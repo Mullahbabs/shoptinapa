@@ -425,3 +425,419 @@ document.addEventListener("click", function (e) {
     quantityInput.value = parseInt(quantityInput.value) + 1;
   }
 });
+
+// product data for each category
+const productCategories = {
+  trending: [
+    {
+      id: 101,
+      title: "Wireless Earbuds",
+      vendor: "TechGadgets",
+      price: 59.99,
+      originalPrice: 79.99,
+      image: "img/nb2.jpg",
+      rating: 4.7,
+      reviews: 128,
+      badge: "Popular",
+    },
+    {
+      id: 102,
+      title: "Stanly Cup",
+      vendor: "Vicki Home Essentials",
+      price: 59.99,
+      originalPrice: 79.99,
+      image: "img/stanley.jpg",
+      rating: 4.7,
+      reviews: 128,
+      badge: "Popular",
+    },
+    {
+      id: 103,
+      title: "7000 puffs vape",
+      vendor: "Unyime",
+      price: 59.99,
+      originalPrice: 79.99,
+      image: "img/vape.png",
+      rating: 4.7,
+      reviews: 128,
+      badge: "Popular",
+    },
+    {
+      id: 104,
+      title: "Nike Kyrie 4",
+      vendor: "Appiah Apparel",
+      price: 59.99,
+      originalPrice: 79.99,
+      image: "img/nike.jpg",
+      rating: 4.7,
+      reviews: 128,
+      badge: "Popular",
+    },
+    {
+      id: 105,
+      title: "Two Piece Ankara Summer",
+      vendor: "Oby's Couture",
+      price: 59.99,
+      originalPrice: 79.99,
+      image: "img/oby.jpg",
+      rating: 4.7,
+      reviews: 128,
+      badge: "Popular",
+    },
+    {
+      id: 106,
+      title: "2021 Apple Macbook Pro ",
+      vendor: "TechGadgets",
+      price: 59.99,
+      originalPrice: 79.99,
+      image: "img/eleco.jpg",
+      rating: 4.7,
+      reviews: 128,
+      badge: "Popular",
+    },
+  ],
+  local: [
+    {
+      id: 201,
+      title: "Handcarved Wooden Bowl",
+      vendor: "CR Artisans",
+      price: 34.99,
+      originalPrice: 42.99,
+      image: "img/products/wooden-bowl.jpg",
+      rating: 4.9,
+      reviews: 56,
+      badge: "Local",
+    },
+    {
+      id: 202,
+      title: "Handcarved Wooden Bowl",
+      vendor: "CR Artisans",
+      price: 34.99,
+      originalPrice: 42.99,
+      image: "img/products/wooden-bowl.jpg",
+      rating: 4.9,
+      reviews: 56,
+      badge: "Local",
+    },
+    {
+      id: 203,
+      title: "Handcarved Wooden Bowl",
+      vendor: "CR Artisans",
+      price: 34.99,
+      originalPrice: 42.99,
+      image: "img/products/wooden-bowl.jpg",
+      rating: 4.9,
+      reviews: 56,
+      badge: "Local",
+    },
+    {
+      id: 204,
+      title: "Handcarved Wooden Bowl",
+      vendor: "CR Artisans",
+      price: 34.99,
+      originalPrice: 42.99,
+      image: "img/products/wooden-bowl.jpg",
+      rating: 4.9,
+      reviews: 56,
+      badge: "Local",
+    },
+    {
+      id: 205,
+      title: "Handcarved Wooden Bowl",
+      vendor: "CR Artisans",
+      price: 34.99,
+      originalPrice: 42.99,
+      image: "img/products/wooden-bowl.jpg",
+      rating: 4.9,
+      reviews: 56,
+      badge: "Local",
+    },
+    {
+      id: 206,
+      title: "Handcarved Wooden Bowl",
+      vendor: "CR Artisans",
+      price: 34.99,
+      originalPrice: 42.99,
+      image: "img/products/wooden-bowl.jpg",
+      rating: 4.9,
+      reviews: 56,
+      badge: "Local",
+    },
+  ],
+  deals: [
+    {
+      id: 301,
+      title: "Smart Watch",
+      vendor: "TechDeals",
+      price: 89.99,
+      originalPrice: 129.99,
+      image: "img/products/smartwatch.jpg",
+      rating: 4.5,
+      reviews: 214,
+      badge: "30% Off",
+    },
+    {
+      id: 301,
+      title: "Smart Watch",
+      vendor: "TechDeals",
+      price: 89.99,
+      originalPrice: 129.99,
+      image: "img/products/smartwatch.jpg",
+      rating: 4.5,
+      reviews: 214,
+      badge: "30% Off",
+    },
+    {
+      id: 301,
+      title: "Smart Watch",
+      vendor: "TechDeals",
+      price: 89.99,
+      originalPrice: 129.99,
+      image: "img/products/smartwatch.jpg",
+      rating: 4.5,
+      reviews: 214,
+      badge: "30% Off",
+    },
+    {
+      id: 301,
+      title: "Smart Watch",
+      vendor: "TechDeals",
+      price: 89.99,
+      originalPrice: 129.99,
+      image: "img/products/smartwatch.jpg",
+      rating: 4.5,
+      reviews: 214,
+      badge: "30% Off",
+    },
+    {
+      id: 301,
+      title: "Smart Watch",
+      vendor: "TechDeals",
+      price: 89.99,
+      originalPrice: 129.99,
+      image: "img/products/smartwatch.jpg",
+      rating: 4.5,
+      reviews: 214,
+      badge: "30% Off",
+    },
+    {
+      id: 301,
+      title: "Smart Watch",
+      vendor: "TechDeals",
+      price: 89.99,
+      originalPrice: 129.99,
+      image: "img/products/smartwatch.jpg",
+      rating: 4.5,
+      reviews: 214,
+      badge: "30% Off",
+    },
+  ],
+};
+
+// Initialize the carousel
+document.addEventListener("DOMContentLoaded", function () {
+  // Store carousel intervals
+  const carouselIntervals = new Map();
+
+  // Tab functionality
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      // Clear any existing intervals
+      carouselIntervals.forEach((interval) => clearInterval(interval));
+      carouselIntervals.clear();
+
+      // Update active tab
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      this.classList.add("active");
+
+      // Show corresponding content
+      const tabId = this.dataset.tab;
+      tabContents.forEach((content) => {
+        content.classList.remove("active");
+        if (content.id === tabId) {
+          content.classList.add("active");
+          // Initialize carousel for this tab
+          initCarousel(content.querySelector(".products-carousel"));
+        }
+      });
+
+      // Render products for this tab
+      renderProducts(tabId);
+    });
+  });
+
+  // Initialize first tab
+  const firstTab = document.querySelector(".tab-content.active");
+  if (firstTab) {
+    renderProducts(firstTab.id);
+    initCarousel(firstTab.querySelector(".products-carousel"));
+  }
+
+  // Carousel initialization function
+  function initCarousel(carousel) {
+    if (!carousel) return;
+
+    // Clear any existing interval for this carousel
+    if (carouselIntervals.has(carousel)) {
+      clearInterval(carouselIntervals.get(carousel));
+    }
+
+    // Get navigation buttons specific to this carousel
+    const parentTab = carousel.closest(".tab-content");
+    const prevBtn = parentTab.querySelector(".carousel-prev");
+    const nextBtn = parentTab.querySelector(".carousel-next");
+
+    // Calculate scroll amount based on product card width
+    const getScrollAmount = () => {
+      const card = carousel.querySelector(".product-card");
+      return card ? card.offsetWidth + 20 : 300; // 20px for gap
+    };
+
+    // Navigation functions
+    const scrollPrev = () => {
+      carousel.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+    };
+
+    const scrollNext = () => {
+      if (isAtEnd()) {
+        // Smoothly scroll back to start if at end
+        carousel.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        carousel.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+      }
+    };
+
+    // Check if scrolled to end
+    const isAtEnd = () => {
+      return (
+        carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10
+      );
+    };
+
+    // Update button states
+    const updateButtons = () => {
+      if (!prevBtn || !nextBtn) return;
+      prevBtn.disabled = carousel.scrollLeft <= 10;
+      nextBtn.disabled = isAtEnd();
+    };
+
+    // Set up event listeners
+    prevBtn?.addEventListener("click", () => {
+      pauseCarousel(carousel);
+      scrollPrev();
+      resetCarousel(carousel);
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      pauseCarousel(carousel);
+      scrollNext();
+      resetCarousel(carousel);
+    });
+
+    carousel.addEventListener("scroll", updateButtons);
+    updateButtons();
+
+    // Auto-scroll functionality
+    const startCarousel = () => {
+      if (carouselIntervals.has(carousel)) return;
+
+      const interval = setInterval(() => {
+        scrollNext();
+      }, 3000); // Scroll every 3 seconds
+
+      carouselIntervals.set(carousel, interval);
+    };
+
+    const pauseCarousel = () => {
+      if (carouselIntervals.has(carousel)) {
+        clearInterval(carouselIntervals.get(carousel));
+        carouselIntervals.delete(carousel);
+      }
+    };
+
+    const resetCarousel = () => {
+      pauseCarousel(carousel);
+      startCarousel(carousel);
+    };
+
+    // Pause on hover
+    carousel.addEventListener("mouseenter", pauseCarousel);
+    carousel.addEventListener("mouseleave", startCarousel);
+
+    // Start the carousel
+    startCarousel();
+  }
+
+  // Product rendering function
+  function renderProducts(category) {
+    const products = productCategories[category];
+    const carousel = document.querySelector(`#${category} .products-carousel`);
+
+    if (!products || !carousel) return;
+
+    carousel.innerHTML = "";
+
+    products.forEach((product) => {
+      // Generate star rating HTML
+      const fullStars = Math.floor(product.rating);
+      const hasHalfStar = product.rating % 1 >= 0.5;
+      let starsHtml = "";
+
+      for (let i = 0; i < 5; i++) {
+        if (i < fullStars) {
+          starsHtml += '<i class="fas fa-star"></i>';
+        } else if (i === fullStars && hasHalfStar) {
+          starsHtml += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+          starsHtml += '<i class="far fa-star"></i>';
+        }
+      }
+
+      const productCard = document.createElement("div");
+      productCard.className = "product-card";
+      productCard.innerHTML = `
+        ${
+          product.badge
+            ? `<span class="product-badge">${product.badge}</span>`
+            : ""
+        }
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.title}" loading="lazy">
+          <button class="quick-view-btn" data-product-id="${product.id}">
+            <i class="far fa-eye"></i> Quick View
+          </button>
+        </div>
+        <div class="product-info">
+          <div class="product-vendor">${product.vendor}</div>
+          <h3 class="product-title">${product.title}</h3>
+          <div class="rating">
+            <div class="rating-stars">${starsHtml}</div>
+            <div class="rating-count">(${product.reviews})</div>
+          </div>
+          <div class="product-price">
+            <span class="current-price">$${product.price.toFixed(2)}</span>
+            ${
+              product.originalPrice
+                ? `<span class="original-price">$${product.originalPrice.toFixed(
+                    2
+                  )}</span>`
+                : ""
+            }
+          </div>
+          <div class="product-actions">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      `;
+
+      carousel.appendChild(productCard);
+    });
+
+    // Re-initialize quick view buttons for these products
+    initQuickView();
+  }
+});

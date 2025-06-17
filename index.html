@@ -25,8 +25,9 @@
     <header class="top-header">
       <div class="container">
         <div class="top-header-content">
-          <div class="welcome-message">
-            <i class="fas fa-flag"> Proudly Crossriver</i>
+          <div class="welcome-message" style="color: white">
+            <span class="fas fa-flag" style="color: aqua"></span> Proudly
+            Crossriver
           </div>
           <div class="top-header-links">
             <a href="#"><i class="fas fa-envelope"></i> Enquiries</a>
@@ -279,6 +280,49 @@
         </div>
         <div class="product-grid">
           <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+      <div class="container">
+        <div class="section-header">
+          <h2>Recent Collections</h2>
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="trending">
+              Trending Now
+            </button>
+            <button class="tab-btn" data-tab="local">Made in CR</button>
+            <button class="tab-btn" data-tab="deals">Hot Deals</button>
+          </div>
+        </div>
+
+        <div class="tab-content active" id="trending">
+          <div class="products-carousel">
+            <!-- Products will be inserted by JavaScript -->
+          </div>
+        </div>
+
+        <div class="tab-content" id="local">
+          <div class="products-carousel">
+            <!-- Products will be inserted by JavaScript -->
+          </div>
+        </div>
+
+        <div class="tab-content" id="deals">
+          <div class="products-carousel">
+            <!-- Products will be inserted by JavaScript -->
+          </div>
+        </div>
+
+        <div class="carousel2-controls">
+          <button class="carousel-prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
     </section>
