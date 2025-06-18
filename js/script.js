@@ -660,7 +660,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (content.id === tabId) {
           content.classList.add("active");
           // Initialize carousel for this tab
-          initCarousel(content.querySelector(".products-carousel"));
+          initCarousel(content);
         }
       });
 
@@ -673,11 +673,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const firstTab = document.querySelector(".tab-content.active");
   if (firstTab) {
     renderProducts(firstTab.id);
-    initCarousel(firstTab.querySelector(".products-carousel"));
+    initCarousel(firstTab);
   }
 
-  // Carousel initialization function
-  function initCarousel(carousel) {
+  // Carousel initialization function - now takes the tab content element
+  function initCarousel(tabContent) {
+    const carousel = tabContent.querySelector(".products-carousel");
     if (!carousel) return;
 
     // Clear any existing interval for this carousel
@@ -685,10 +686,9 @@ document.addEventListener("DOMContentLoaded", function () {
       clearInterval(carouselIntervals.get(carousel));
     }
 
-    // Get navigation buttons specific to this carousel
-    const parentTab = carousel.closest(".tab-content");
-    const prevBtn = parentTab.querySelector(".carousel-prev");
-    const nextBtn = parentTab.querySelector(".carousel-next");
+    // Get navigation buttons - now properly scoped to this tab
+    const prevBtn = tabContent.querySelector(".carousel-prev");
+    const nextBtn = tabContent.querySelector(".carousel-next");
 
     // Calculate scroll amount based on product card width
     const getScrollAmount = () => {
@@ -725,13 +725,15 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // Set up event listeners
-    prevBtn?.addEventListener("click", () => {
+    prevBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
       pauseCarousel(carousel);
       scrollPrev();
       resetCarousel(carousel);
     });
 
-    nextBtn?.addEventListener("click", () => {
+    nextBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
       pauseCarousel(carousel);
       scrollNext();
       resetCarousel(carousel);
@@ -759,13 +761,15 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const resetCarousel = () => {
-      pauseCarousel(carousel);
-      startCarousel(carousel);
+      pauseCarousel();
+      startCarousel();
     };
 
     // Pause on hover
     carousel.addEventListener("mouseenter", pauseCarousel);
     carousel.addEventListener("mouseleave", startCarousel);
+    carousel.addEventListener("touchstart", pauseCarousel);
+    carousel.addEventListener("touchend", startCarousel);
 
     // Start the carousel
     startCarousel();

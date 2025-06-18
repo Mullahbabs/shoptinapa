@@ -1621,6 +1621,10 @@ body.dark-mode .product-meta-footer {
   transition: scroll-left 0.5s ease;
 }
 
+.products-carousel {
+  will-change: transform;
+}
+
 .carousel-prev:disabled,
 .carousel-next:disabled {
   opacity: 0.5;
