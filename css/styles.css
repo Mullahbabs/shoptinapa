@@ -1595,6 +1595,10 @@ body.dark-mode .product-meta-footer {
   display: none;
 }
 
+.tab-content {
+  padding: 20px 0;
+}
+
 .tab-content.active {
   display: block;
 }
@@ -1644,7 +1648,7 @@ body.dark-mode .product-meta-footer {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .carousel-prev,

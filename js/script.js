@@ -676,7 +676,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initCarousel(firstTab);
   }
 
-  // Carousel initialization function - now takes the tab content element
+  // Carousel initialization function
   function initCarousel(tabContent) {
     const carousel = tabContent.querySelector(".products-carousel");
     if (!carousel) return;
@@ -686,7 +686,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearInterval(carouselIntervals.get(carousel));
     }
 
-    // Get navigation buttons - now properly scoped to this tab
+    // Get navigation buttons
     const prevBtn = tabContent.querySelector(".carousel-prev");
     const nextBtn = tabContent.querySelector(".carousel-next");
 
@@ -703,7 +703,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const scrollNext = () => {
       if (isAtEnd()) {
-        // Smoothly scroll back to start if at end
         carousel.scrollTo({ left: 0, behavior: "smooth" });
       } else {
         carousel.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
@@ -727,16 +726,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Set up event listeners
     prevBtn?.addEventListener("click", (e) => {
       e.preventDefault();
-      pauseCarousel(carousel);
+      pauseCarousel();
       scrollPrev();
-      resetCarousel(carousel);
+      resetCarousel();
     });
 
     nextBtn?.addEventListener("click", (e) => {
       e.preventDefault();
-      pauseCarousel(carousel);
+      pauseCarousel();
       scrollNext();
-      resetCarousel(carousel);
+      resetCarousel();
     });
 
     carousel.addEventListener("scroll", updateButtons);
@@ -748,7 +747,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const interval = setInterval(() => {
         scrollNext();
-      }, 3000); // Scroll every 3 seconds
+      }, 3000);
 
       carouselIntervals.set(carousel, interval);
     };
@@ -765,7 +764,7 @@ document.addEventListener("DOMContentLoaded", function () {
       startCarousel();
     };
 
-    // Pause on hover
+    // Pause on hover/touch
     carousel.addEventListener("mouseenter", pauseCarousel);
     carousel.addEventListener("mouseleave", startCarousel);
     carousel.addEventListener("touchstart", pauseCarousel);
