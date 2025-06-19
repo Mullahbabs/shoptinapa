@@ -1,6 +1,21 @@
-// Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Tinapa E-Commerce JS initialized");
+
+  // Currency conversion function
+  function convertToNGN(usdPrice) {
+    const exchangeRate = 1600; // 1 USD = 1,600 NGN (adjust as needed)
+    const ngnPrice = usdPrice * exchangeRate;
+    if (ngnPrice >= 1000000) {
+      // For millions, show whole numbers
+      return `₦${Math.round(ngnPrice).toLocaleString("en-NG")}`;
+    } else {
+      // For smaller amounts, show two decimal places
+      return `₦${ngnPrice.toLocaleString("en-NG", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`;
+    }
+  }
 
   // Dark Mode Toggle
   const darkModeToggle = document.getElementById("darkModeToggle");
@@ -211,11 +226,11 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="rating-count">(${product.reviews})</div>
           </div>
           <div class="product-price">
-            <span class="current-price">$${product.price.toFixed(2)}</span>
+            <span class="current-price">${convertToNGN(product.price)}</span>
             ${
               product.originalPrice
-                ? `<span class="original-price">$${product.originalPrice.toFixed(
-                    2
+                ? `<span class="original-price">${convertToNGN(
+                    product.originalPrice
                   )}</span>`
                 : ""
             }
@@ -299,14 +314,13 @@ document.addEventListener("DOMContentLoaded", function () {
       product.title;
     document.querySelector(".modal-product-info .vendor").textContent =
       product.vendor;
-    document.querySelector(
-      ".modal-product-info .current-price"
-    ).textContent = `$${product.price.toFixed(2)}`;
+    document.querySelector(".modal-product-info .current-price").textContent =
+      convertToNGN(product.price);
 
     if (product.originalPrice) {
       document.querySelector(
         ".modal-product-info .original-price"
-      ).textContent = `$${product.originalPrice.toFixed(2)}`;
+      ).textContent = convertToNGN(product.originalPrice);
       document.querySelector(
         ".modal-product-info .original-price"
       ).style.display = "inline";
@@ -1078,11 +1092,11 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="rating-count">(${product.reviews})</div>
           </div>
           <div class="product-price">
-            <span class="current-price">$${product.price.toFixed(2)}</span>
+            <span class="current-price">${convertToNGN(product.price)}</span>
             ${
               product.originalPrice
-                ? `<span class="original-price">$${product.originalPrice.toFixed(
-                    2
+                ? `<span class="original-price">${convertToNGN(
+                    product.originalPrice
                   )}</span>`
                 : ""
             }
