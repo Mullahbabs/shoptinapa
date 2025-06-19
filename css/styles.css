@@ -1719,3 +1719,50 @@ body.dark-mode .tab-nav {
 body.dark-mode .tab-btn {
   color: #d0d0d0;
 }
+
+/* Existing CSS remains unchanged */
+
+/* New section styles */
+.fashion-products,
+.electronics-products {
+  padding: 60px 0;
+  background: #f9f9f9;
+}
+
+body.dark-mode .fashion-products,
+body.dark-mode .electronics-products {
+  background: #121212;
+}
+
+/* Reversed section header */
+.section-header.reverse {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.section-header.reverse .tab-nav {
+  justify-content: flex-start;
+}
+
+.section-header.reverse h2 {
+  text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-header.reverse {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-header.reverse h2 {
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .section-header.reverse .tab-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
