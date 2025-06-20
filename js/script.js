@@ -17,6 +17,170 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Cart Functionality
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    if (document.querySelector(".cart-modal.active")) {
+      renderCartModal();
+    }
+  }
+
+  function updateCartCount() {
+    const cartCount = document.querySelector(".cart-count");
+    if (cartCount) {
+      cartCount.textContent = cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
+    }
+  }
+
+  function showFlashMessage(message) {
+    const flashMessage = document.querySelector(".flash-message");
+    if (flashMessage) {
+      flashMessage.textContent = message;
+      flashMessage.classList.add("active");
+      setTimeout(() => flashMessage.classList.remove("active"), 2000);
+    }
+  }
+
+  function addToCart(product, quantity = 1) {
+    const existingItem = cart.find((item) => item.id === product.id);
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      cart.push({ ...product, quantity });
+    }
+    saveCart();
+    showFlashMessage("Added to Cart");
+  }
+
+  function renderCartModal() {
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const cartTotalPrice = document.querySelector(".cart-total-price");
+    if (!cartItemsContainer || !cartTotalPrice) return;
+
+    cartItemsContainer.innerHTML = "";
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+      cartTotalPrice.textContent = "₦0";
+      return;
+    }
+
+    cart.forEach((item) => {
+      const cartItem = document.createElement("div");
+      cartItem.className = "cart-item";
+      cartItem.innerHTML = `
+        <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+        <div class="cart-item-info">
+          <h4>${item.title}</h4>
+          <p>${item.vendor}</p>
+          <p>${convertToNGN(item.price)}</p>
+        </div>
+        <div class="cart-item-actions">
+          <div class="quantity-selector">
+            <button class="quantity-minus">-</button>
+            <input type="number" value="${item.quantity}" min="1">
+            <button class="quantity-plus">+</button>
+          </div>
+          <button class="remove-item" data-id="${
+            item.id
+          }"><i class="fas fa-trash"></i></button>
+        </div>
+      `;
+      cartItemsContainer.appendChild(cartItem);
+    });
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    cartTotalPrice.textContent = convertToNGN(total);
+  }
+
+  // Cart Event Listeners
+  const cartBtn = document.querySelector(".cart-btn");
+  const cartModal = document.querySelector(".cart-modal");
+  const closeCartModalBtn = document.querySelector(".close-cart-modal");
+  const clearCartBtn = document.querySelector(".clear-cart");
+  const checkoutBtn = document.querySelector(".checkout");
+  const cartModalOverlay = document.querySelector(".cart-modal .modal-overlay");
+
+  if (cartBtn) {
+    cartBtn.addEventListener("click", () => {
+      cartModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      renderCartModal();
+    });
+  }
+
+  if (closeCartModalBtn) {
+    closeCartModalBtn.addEventListener("click", () => {
+      cartModal.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  }
+
+  if (cartModalOverlay) {
+    cartModalOverlay.addEventListener("click", () => {
+      cartModal.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  }
+
+  if (clearCartBtn) {
+    clearCartBtn.addEventListener("click", () => {
+      cart = [];
+      saveCart();
+    });
+  }
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      alert("Proceeding to checkout...");
+      // Implement checkout logic here
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("quantity-minus")) {
+      const input = e.target.nextElementSibling;
+      const id = e.target.closest(".cart-item")?.querySelector(".remove-item")
+        ?.dataset.id;
+      if (input && id && input.value > 1) {
+        const item = cart.find((item) => item.id == id);
+        if (item) {
+          item.quantity--;
+          saveCart();
+        }
+      }
+    } else if (e.target.classList.contains("quantity-plus")) {
+      const input = e.target.previousElementSibling;
+      const id = e.target.closest(".cart-item")?.querySelector(".remove-item")
+        ?.dataset.id;
+      if (input && id) {
+        const item = cart.find((item) => item.id == id);
+        if (item) {
+          item.quantity++;
+          saveCart();
+        }
+      }
+    } else if (
+      e.target.classList.contains("remove-item") ||
+      e.target.closest(".remove-item")
+    ) {
+      const id =
+        e.target.dataset.id || e.target.closest(".remove-item").dataset.id;
+      cart = cart.filter((item) => item.id != id);
+      saveCart();
+    }
+  });
+
+  updateCartCount();
+
   // Dark Mode Toggle
   const darkModeToggle = document.getElementById("darkModeToggle");
   const body = document.body;
@@ -236,7 +400,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           </div>
           <div class="product-actions">
-            <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart" data-id="${
+              product.id
+            }">Add to Cart</button>
             <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           </div>
         </div>
@@ -246,14 +412,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("click", function (e) {
-      if (
-        e.target.classList.contains("add-to-cart") ||
-        e.target.closest(".add-to-cart")
-      ) {
-        const productCard = e.target.closest(".product-card");
-        const productTitle =
-          productCard.querySelector(".product-title").textContent;
-        console.log(`Added to cart: ${productTitle}`);
+      const addToCartBtn = e.target.closest(".add-to-cart");
+      if (addToCartBtn) {
+        const productId = addToCartBtn.dataset.id;
+        let product = products.find((p) => p.id == productId);
+        if (!product) {
+          for (const category in productCategories) {
+            product = productCategories[category].find(
+              (p) => p.id == productId
+            );
+            if (product) break;
+          }
+        }
+        if (product) {
+          addToCart(product);
+        }
       }
     });
   }
@@ -277,6 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Handwoven Raffia Bag",
       vendor: "CR Crafts",
       price: 45.99,
+      Image: "img/made2.jpg",
       originalPrice: 59.99,
       description:
         "Beautifully handcrafted raffia bag made by local artisans in Cross River.",
@@ -307,7 +481,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function openQuickViewModal(productId) {
-    const product = detailedProducts[productId];
+    let product = detailedProducts[productId];
+    if (!product) {
+      for (const category in productCategories) {
+        product = productCategories[category].find((p) => p.id == productId);
+        if (product) {
+          product.description =
+            product.description || "No description available.";
+          product.images = product.images || [product.image];
+          break;
+        }
+      }
+    }
     if (!product) return;
 
     document.querySelector(".modal-product-info .product-title").textContent =
@@ -382,6 +567,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     quickViewModal.classList.add("active");
     document.body.style.overflow = "hidden";
+
+    // Add to Cart from Quick View
+    const quickViewAddToCart = quickViewModal.querySelector(".add-to-cart");
+    quickViewAddToCart.dataset.id = product.id;
   }
 
   function closeQuickViewModal() {
@@ -402,6 +591,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } else if (e.target.classList.contains("quantity-plus")) {
       quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+
+    // Handle Add to Cart from Quick View
+    if (
+      e.target.classList.contains("add-to-cart") &&
+      e.target.closest(".quick-view-modal")
+    ) {
+      const productId = e.target.dataset.id;
+      let product = detailedProducts[productId];
+      if (!product) {
+        for (const category in productCategories) {
+          product = productCategories[category].find((p) => p.id == productId);
+          if (product) break;
+        }
+      }
+      if (product) {
+        const quantity = parseInt(
+          quickViewModal.querySelector(".quantity-selector input").value
+        );
+        addToCart(product, quantity);
+      }
     }
   });
 
@@ -542,7 +752,6 @@ document.addEventListener("DOMContentLoaded", function () {
         reviews: 56,
         badge: "Local",
       },
-      // ... other local products
     ],
     deals: [
       {
@@ -611,7 +820,6 @@ document.addEventListener("DOMContentLoaded", function () {
         reviews: 214,
         badge: "30% Off",
       },
-      // ... other deals products with unique IDs
     ],
     male: [
       {
@@ -1212,7 +1420,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           </div>
           <div class="product-actions">
-            <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart" data-id="${
+              product.id
+            }">Add to Cart</button>
             <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           </div>
         </div>
