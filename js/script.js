@@ -197,27 +197,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mobile Menu Functionality
   const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
-  const navMenu = document.querySelector(".nav-menu");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
+  const mobileMenuClose = document.querySelector(".mobile-menu-close");
 
-  if (mobileMenuToggle && navMenu) {
-    const mobileMenu = document.createElement("div");
-    mobileMenu.className = "mobile-menu";
-    const mobileMenuOverlay = document.createElement("div");
-    mobileMenuOverlay.className = "mobile-menu-overlay";
-
-    // Add close button
-    const closeButton = document.createElement("button");
-    closeButton.className = "mobile-menu-close";
-    closeButton.innerHTML = '<i class="fas fa-times"></i>';
-    closeButton.setAttribute("aria-label", "Close mobile menu");
-    mobileMenu.appendChild(closeButton);
-
-    // Clone navigation
-    const clonedNav = navMenu.cloneNode(true);
-    mobileMenu.appendChild(clonedNav);
-    document.body.appendChild(mobileMenu);
-    document.body.appendChild(mobileMenuOverlay);
-
+  if (mobileMenuToggle && mobileMenu && mobileMenuOverlay && mobileMenuClose) {
     // Handle dropdowns
     const mobileDropdowns = mobileMenu.querySelectorAll(".dropdown");
     mobileDropdowns.forEach((dropdown) => {
@@ -241,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close menu
     mobileMenuOverlay.addEventListener("click", closeMobileMenu);
-    closeButton.addEventListener("click", closeMobileMenu);
+    mobileMenuClose.addEventListener("click", closeMobileMenu);
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
         closeMobileMenu();
