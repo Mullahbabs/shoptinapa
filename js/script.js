@@ -224,7 +224,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const link = dropdown.querySelector(".nav-link");
       link.addEventListener("click", function (e) {
         e.preventDefault();
-        dropdown.classList.toggle("active");
+        const isActive = dropdown.classList.contains("active");
+        mobileDropdowns.forEach((d) => d.classList.remove("active"));
+        if (!isActive) dropdown.classList.add("active");
       });
     });
 
@@ -237,13 +239,19 @@ document.addEventListener("DOMContentLoaded", function () {
         : "";
     });
 
-    // Close menu on overlay click or close button
+    // Close menu
     mobileMenuOverlay.addEventListener("click", closeMobileMenu);
     closeButton.addEventListener("click", closeMobileMenu);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+        closeMobileMenu();
+      }
+    });
 
     function closeMobileMenu() {
       mobileMenu.classList.remove("active");
       mobileMenuOverlay.classList.remove("active");
+      mobileDropdowns.forEach((d) => d.classList.remove("active"));
       document.body.style.overflow = "";
     }
   }
