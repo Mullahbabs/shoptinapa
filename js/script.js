@@ -205,11 +205,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const mobileMenuOverlay = document.createElement("div");
     mobileMenuOverlay.className = "mobile-menu-overlay";
 
+    // Add close button
+    const closeButton = document.createElement("button");
+    closeButton.className = "mobile-menu-close";
+    closeButton.innerHTML = '<i class="fas fa-times"></i>';
+    closeButton.setAttribute("aria-label", "Close mobile menu");
+    mobileMenu.appendChild(closeButton);
+
+    // Clone navigation
     const clonedNav = navMenu.cloneNode(true);
     mobileMenu.appendChild(clonedNav);
     document.body.appendChild(mobileMenu);
     document.body.appendChild(mobileMenuOverlay);
 
+    // Handle dropdowns
     const mobileDropdowns = mobileMenu.querySelectorAll(".dropdown");
     mobileDropdowns.forEach((dropdown) => {
       const link = dropdown.querySelector(".nav-link");
@@ -219,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+    // Toggle mobile menu
     mobileMenuToggle.addEventListener("click", function () {
       mobileMenu.classList.toggle("active");
       mobileMenuOverlay.classList.toggle("active");
@@ -227,11 +237,15 @@ document.addEventListener("DOMContentLoaded", function () {
         : "";
     });
 
-    mobileMenuOverlay.addEventListener("click", function () {
+    // Close menu on overlay click or close button
+    mobileMenuOverlay.addEventListener("click", closeMobileMenu);
+    closeButton.addEventListener("click", closeMobileMenu);
+
+    function closeMobileMenu() {
       mobileMenu.classList.remove("active");
       mobileMenuOverlay.classList.remove("active");
       document.body.style.overflow = "";
-    });
+    }
   }
 
   // Carousel Functionality
