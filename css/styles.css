@@ -662,6 +662,17 @@ body.dark-mode .navbar {
   }
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 10px;
+}
+
 /* Mobile Menu */
 .mobile-menu {
   position: absolute;
@@ -782,15 +793,18 @@ body.dark-mode .mobile-menu-close {
 .mobile-menu-toggle {
   display: none;
 }
-
 /* Responsive Navigation */
 @media (max-width: 768px) {
   .navbar .nav-menu {
-    display: block;
+    display: none;
   }
 
   .mobile-menu-toggle {
     display: block;
+  }
+
+  .mobile-menu.active .nav-menu {
+    display: flex;
   }
 }
 
