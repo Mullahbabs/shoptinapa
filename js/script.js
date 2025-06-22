@@ -694,7 +694,7 @@ document.addEventListener("DOMContentLoaded", function () {
     local: [
       {
         id: 201,
-        title: "Handcarved Wooden Bowl",
+        title: "Beaded String Crafts",
         vendor: "CR Artisans",
         price: 34.99,
         originalPrice: 42.99,
@@ -705,7 +705,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 202,
-        title: "Handcarved Wooden Bowl",
+        title: "Handmade Storage Baskets",
         vendor: "CR Artisans",
         price: 34.99,
         originalPrice: 42.99,
@@ -727,7 +727,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 204,
-        title: "Handcarved Wooden Bowl",
+        title: "Handcrafted Tapistry",
         vendor: "CR Artisans",
         price: 34.99,
         originalPrice: 42.99,
@@ -738,7 +738,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 205,
-        title: "Handcarved Wooden Bowl",
+        title: "Handmade Shopping Basket",
         vendor: "CR Artisans",
         price: 34.99,
         originalPrice: 42.99,
@@ -749,7 +749,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 206,
-        title: "Handcarved Wooden Bowl",
+        title: "Handcarved Wooden Kitchen Set",
         vendor: "CR Artisans",
         price: 34.99,
         originalPrice: 42.99,
@@ -762,7 +762,7 @@ document.addEventListener("DOMContentLoaded", function () {
     deals: [
       {
         id: 301,
-        title: "Smart Watch",
+        title: "Smart Headphones",
         vendor: "TechDeals",
         price: 89.99,
         originalPrice: 129.99,
@@ -773,7 +773,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 302,
-        title: "Smart Watch",
+        title: "9th Gen Laptop PC",
         vendor: "TechDeals",
         price: 89.99,
         originalPrice: 129.99,
@@ -784,7 +784,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 303,
-        title: "Smart Watch",
+        title: "Home Music Carryons",
         vendor: "TechDeals",
         price: 89.99,
         originalPrice: 129.99,
@@ -795,7 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 304,
-        title: "Smart Watch",
+        title: "Apple Gadget Set",
         vendor: "TechDeals",
         price: 89.99,
         originalPrice: 129.99,
@@ -806,7 +806,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         id: 305,
-        title: "Smart Watch",
+        title: "Pink Apple Set For Him",
         vendor: "TechDeals",
         price: 89.99,
         originalPrice: 129.99,
