@@ -2498,7 +2498,7 @@ body.dark-mode .flash-message {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 100%; /* Square aspect ratio */
+  padding-bottom: 100%;
   overflow: hidden;
   border-radius: 8px;
   background: #000;
@@ -2527,7 +2527,7 @@ body.dark-mode .flash-message {
   border-top-color: #e74c3c;
   animation: spin 1s linear infinite;
   opacity: 0;
-  z-index: 1;
+  z-index: 0;
 }
 
 .youtube-modal.active .modal-content::before {
