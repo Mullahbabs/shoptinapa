@@ -1783,8 +1783,6 @@ body.dark-mode .tab-btn {
   color: #d0d0d0;
 }
 
-/* Existing CSS remains unchanged */
-
 /* New section styles */
 .fashion-products,
 .electronics-products {
@@ -1839,7 +1837,7 @@ body.dark-mode .electronics-products {
 .ticker-text {
   display: inline-block;
   animation: scroll 20s linear infinite;
-  padding-left: 100%; /* Start offscreen */
+  padding-left: 100%;
 }
 @keyframes scroll {
   0% {
