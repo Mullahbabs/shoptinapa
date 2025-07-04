@@ -477,7 +477,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  closeModalBtn.addEventListener("click", closeQuickViewModal);
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".close-modal")) {
+      closeQuickViewModal();
+    }
+  });
   modalOverlay.addEventListener("click", closeQuickViewModal);
 
   document.addEventListener("keydown", function (e) {
@@ -1319,7 +1323,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const updateButtons = () => {
       if (!prevBtn || !nextBtn) return;
       prevBtn.disabled = carousel.scrollLeft <= 10;
-      nextBtn.disabled = false; // Always enabled due to looping
+      nextBtn.disabled = false;
     };
 
     prevBtn?.addEventListener("click", (e) => {
