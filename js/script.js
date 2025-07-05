@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
-      alert("Proceeding to checkout...");
+      alert("Proceed to checkout?");
       // Implement checkout logic here
     });
   }
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Generate order number
-    const orderNumber = `TNPA-${new Date().getFullYear()}-${Math.floor(
+    const orderNumber = `PAPRT-${new Date().getFullYear()}-${Math.floor(
       1000 + Math.random() * 9000
     )}`;
     document.querySelector(".order-number span").textContent = orderNumber;
@@ -383,9 +383,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (btnComplete) {
     btnComplete.addEventListener("click", function (e) {
       e.preventDefault();
-
-      // Here you would typically send the order to your backend
-      // For demo purposes, we'll just show a success message and clear the cart
 
       // Clear cart
       cart = [];

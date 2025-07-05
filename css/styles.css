@@ -2090,13 +2090,13 @@ body.dark-mode .flash-message {
 }
 
 @media (max-width: 480px) {
-  .cart-buttons {
+  .cart-actions {
     flex-direction: column;
     gap: 10px;
   }
 
-  .cart-clear-btn,
-  .cart-checkout-btn {
+  .clear-cart,
+  .checkout {
     width: 100%;
   }
 
