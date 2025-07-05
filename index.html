@@ -759,7 +759,200 @@
     <!-- Flash Message -->
     <div id="flash-message" class="flash-message"></div>
 
+    <!-- Checkout Modal -->
+<div class="checkout-modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="close-checkout-modal">&times;</button>
+    <h2>Checkout</h2>
     
+    <div class="checkout-steps">
+      <div class="step active" data-step="1">
+        <span>1</span>
+        <p>Shipping</p>
+      </div>
+      <div class="step" data-step="2">
+        <span>2</span>
+        <p>Payment</p>
+      </div>
+      <div class="step" data-step="3">
+        <span>3</span>
+        <p>Confirmation</p>
+      </div>
+    </div>
+    
+    <div class="checkout-forms">
+      <!-- Shipping Form -->
+      <form class="checkout-form active" id="shipping-form">
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" rows="3" required></textarea>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="state">State</label>
+            <select id="state" required>
+              <option value="">Select State</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Abuja">Abuja</option>
+              <option value="Rivers">Rivers</option>
+              <option value="Cross River">Cross River</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-next" data-next="payment-form">Continue to Payment</button>
+        </div>
+      </form>
+      
+      <!-- Payment Form -->
+      <form class="checkout-form" id="payment-form">
+        <div class="payment-methods">
+          <div class="payment-method active" data-method="card">
+            <input type="radio" name="payment-method" id="card-payment" checked>
+            <label for="card-payment">
+              <i class="fas fa-credit-card"></i>
+              <span>Credit/Debit Card</span>
+            </label>
+          </div>
+          
+          <div class="payment-method" data-method="transfer">
+            <input type="radio" name="payment-method" id="transfer-payment">
+            <label for="transfer-payment">
+              <i class="fas fa-university"></i>
+              <span>Bank Transfer</span>
+            </label>
+          </div>
+          
+          <div class="payment-method" data-method="paypal">
+            <input type="radio" name="payment-method" id="paypal-payment">
+            <label for="paypal-payment">
+              <i class="fab fa-paypal"></i>
+              <span>PayPal</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="card-details active">
+          <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expiry-date">Expiry Date</label>
+              <input type="text" id="expiry-date" placeholder="MM/YY">
+            </div>
+            
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" placeholder="123">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="card-name">Name on Card</label>
+            <input type="text" id="card-name">
+          </div>
+        </div>
+        
+        <div class="order-summary">
+          <h4>Order Summary</h4>
+          <div class="summary-items">
+            <!-- Items will be populated by JS -->
+          </div>
+          <div class="summary-total">
+            <div class="total-row">
+              <span>Subtotal</span>
+              <span class="subtotal">₦0</span>
+            </div>
+            <div class="total-row">
+              <span>Shipping</span>
+              <span class="shipping">₦1,500</span>
+            </div>
+            <div class="total-row grand-total">
+              <span>Total</span>
+              <span class="total">₦0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-prev" data-prev="shipping-form">Back</button>
+          <button type="button" class="btn-next" data-next="confirmation-form">Complete Order</button>
+        </div>
+      </form>
+      
+      <!-- Confirmation Form -->
+      <form class="checkout-form" id="confirmation-form">
+        <div class="confirmation-message">
+          <div class="icon-success">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h3>Order Confirmed!</h3>
+          <p>Thank you for your purchase. Your order has been received and is being processed.</p>
+          <p class="order-number">Order #: <span>TNPA-2023-0001</span></p>
+          <p>We'll send you a confirmation email shortly.</p>
+        </div>
+        
+        <div class="order-summary">
+          <h4>Order Details</h4>
+          <div class="summary-items">
+            <!-- Items will be populated by JS -->
+          </div>
+          <div class="summary-total">
+            <div class="total-row">
+              <span>Subtotal</span>
+              <span class="subtotal">₦0</span>
+            </div>
+            <div class="total-row">
+              <span>Shipping</span>
+              <span class="shipping">₦1,500</span>
+            </div>
+            <div class="total-row grand-total">
+              <span>Total</span>
+              <span class="total">₦0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="shipping-details">
+          <h4>Shipping Information</h4>
+          <div class="details-content">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+        
+        <div class="form-actions single-action">
+          <button type="button" class="btn-complete">Continue Shopping</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
   
     <!-- Vibrant Footer -->
@@ -922,6 +1115,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/checkout.js"></script>
     <script src="js/modal.js"></script>
   </body>
 </html>

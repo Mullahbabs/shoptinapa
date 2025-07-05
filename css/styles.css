@@ -2569,3 +2569,396 @@ body.dark-mode .flash-message {
     right: 10px;
   }
 }
+
+/* Checkout Modal Styles */
+.checkout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-modal.active {
+  display: flex;
+}
+
+.checkout-modal .modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.checkout-modal .modal-content {
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.checkout-modal .close-checkout-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+.checkout-modal h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.checkout-steps::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 1;
+}
+
+.checkout-steps .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.checkout-steps .step span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.checkout-steps .step p {
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+}
+
+.checkout-steps .step.active span {
+  background-color: #4caf50;
+  color: white;
+}
+
+.checkout-steps .step.active p {
+  color: #333;
+  font-weight: 500;
+}
+
+.checkout-forms {
+  position: relative;
+  min-height: 300px;
+}
+
+.checkout-form {
+  display: none;
+}
+
+.checkout-form.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.payment-method {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method input {
+  display: none;
+}
+
+.payment-method label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.payment-method i {
+  font-size: 20px;
+}
+
+.payment-method.active {
+  border-color: #4caf50;
+  background-color: rgba(76, 175, 80, 0.05);
+}
+
+.card-details {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.card-details.active {
+  display: block;
+}
+
+.order-summary {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.order-summary h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.summary-items {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item .item-name {
+  flex: 2;
+}
+
+.summary-item .item-quantity {
+  flex: 1;
+  text-align: center;
+}
+
+.summary-item .item-price {
+  flex: 1;
+  text-align: right;
+}
+
+.summary-total {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.total-row.grand-total {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.confirmation-message {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.confirmation-message .icon-success {
+  font-size: 60px;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.confirmation-message h3 {
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.confirmation-message p {
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.confirmation-message .order-number {
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.shipping-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.shipping-details h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.details-content p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-actions.single-action {
+  justify-content: center;
+}
+
+.btn-prev,
+.btn-next,
+.btn-complete {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-prev {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.btn-prev:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-next,
+.btn-complete {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-next:hover,
+.btn-complete:hover {
+  background-color: #45a049;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .checkout-modal .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .checkout-steps .step p {
+    font-size: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-prev,
+  .btn-next,
+  .btn-complete {
+    width: 100%;
+  }
+}
