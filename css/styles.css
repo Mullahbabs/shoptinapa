@@ -1905,6 +1905,7 @@ body.dark-mode .cart-btn {
   background: var(--background);
   color: #fff;
   max-width: 600px;
+  max-height: 800px;
   margin: 20px auto;
   padding: 15px;
   border-radius: 8px;
@@ -2095,7 +2096,7 @@ body.dark-mode .flash-message {
 }
 
 @media (max-width: 480px) {
-  .cart-actions {
+  .cart-buttons {
     flex-direction: column;
     gap: 10px;
   }
