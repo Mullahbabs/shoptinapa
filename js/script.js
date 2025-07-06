@@ -155,10 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      alert("Proceed to checkout?");
-      // Implement checkout logic here
-    });
+    checkoutBtn.addEventListener("click", () => {});
   }
   function openCheckoutModal() {
     if (cart.length === 0) {
