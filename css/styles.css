@@ -2083,6 +2083,165 @@ body.dark-mode .flash-message {
   }
 }
 
+.hero-banner-zenith {
+  position: relative;
+  height: 90vh;
+  min-height: 300px;
+  max-height: 400px;
+  background-image: url("https://source.unsplash.com/random/1920x1080/?nature,mountain");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  padding: 80px 0;
+  margin: 30px;
+  border-radius: 15px;
+}
+
+.hero-banner-zenith::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(106, 17, 203, 0.7) 0%,
+    rgba(37, 117, 252, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.hero-banner-zenith__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-banner-zenith__title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banner-zenith__subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.hero-banner-zenith__dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-banner-zenith__dropdown-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #fff;
+  color: #6a11cb;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  min-width: 220px;
+}
+
+.hero-banner-zenith__dropdown-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background-color: #f0f0f0;
+}
+
+.hero-banner-zenith__dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 220px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  margin: 10px auto 0;
+  overflow: scroll;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.hero-banner-zenith__dropdown:hover .hero-banner-zenith__dropdown-content {
+  display: block;
+  z-index: 9;
+}
+
+.hero-banner-zenith__dropdown-item {
+  color: #333;
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.hero-banner-zenith__dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.hero-banner-zenith__dropdown-item:hover {
+  background-color: #f8f8f8;
+  color: #6a11cb;
+  padding-left: 25px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner-zenith__title {
+    font-size: 2.5rem;
+  }
+
+  .hero-banner-zenith__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-banner-zenith__dropdown-btn {
+    padding: 12px 30px;
+  }
+}
+
 /* Discover Section */
 .discover-section {
   padding: 60px 0;
@@ -3098,5 +3257,234 @@ body.dark-mode .site-footer {
 @media (max-width: 480px) {
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==================== SEARCH & FILTER STYLES ==================== */
+.search-filter-container {
+  margin: 20px 0;
+  padding: 25px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+body.dark-mode .search-filter-container {
+  background-color: #2d2d2d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .search-input {
+  background-color: #1e1e1e;
+  border-color: #444;
+  color: #f0f0f0;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+.price-filter-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.price-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-filter-group label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+body.dark-mode .price-filter-group label {
+  color: #f0f0f0;
+}
+
+.price-filter-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 120px;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .price-filter-input {
+  background-color: #1e1e1e;
+  border-color: #444;
+  color: #f0f0f0;
+}
+
+.price-filter-input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+  transform: translateY(-1px);
+}
+
+.filter-button:active {
+  transform: translateY(0);
+}
+
+.apply-filter {
+  background-color: #4caf50;
+  color: white;
+}
+
+.apply-filter:hover {
+  background-color: #45a049;
+}
+
+.reset-filter {
+  background-color: #f44336;
+  color: white;
+}
+
+.reset-filter:hover {
+  background-color: #d32f2f;
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 18px;
+  color: #666;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+body.dark-mode .no-results {
+  background-color: #2d2d2d;
+  color: #aaa;
+}
+
+.reset-search-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.reset-search-button:hover {
+  background-color: #0b7dda;
+  transform: translateY(-1px);
+}
+
+.reset-search-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-filter-container {
+    padding: 12px;
+  }
+
+  .search-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .price-filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .filter-buttons {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .price-filter-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .price-filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .price-filter-input {
+    width: 100%;
   }
 }

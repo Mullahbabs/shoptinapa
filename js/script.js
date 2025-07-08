@@ -1,20 +1,296 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Tinapa E-Commerce JS initialized");
 
-  // Currency conversion function
-  function convertToNGN(usdPrice) {
-    const exchangeRate = 1600; // 1 USD = 1,600 NGN (adjust as needed)
-    const ngnPrice = usdPrice * exchangeRate;
-    if (ngnPrice >= 1000000) {
+  // Format Naira amounts for display
+  function formatNaira(amount) {
+    // Round to nearest kobo (2 decimal places)
+    const roundedAmount = Math.round(amount * 100) / 100;
+
+    if (roundedAmount >= 1000000) {
       // For millions, show whole numbers
-      return `₦${Math.round(ngnPrice).toLocaleString("en-NG")}`;
+      return `₦${Math.round(roundedAmount).toLocaleString("en-NG")}`;
     } else {
       // For smaller amounts, show two decimal places
-      return `₦${ngnPrice.toLocaleString("en-NG", {
+      return `₦${roundedAmount.toLocaleString("en-NG", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })}`;
     }
+  }
+
+  // ==================== SEARCH AND FILTER SYSTEM ====================
+  const searchInput = document.querySelector(".search-input");
+  const searchButton = document.querySelector(".search-button");
+  const priceMinInput = document.querySelector(".price-min");
+  const priceMaxInput = document.querySelector(".price-max");
+  const applyFilterButton = document.querySelector(".apply-filter");
+  const resetFilterButton = document.querySelector(".reset-filter");
+  const productGridElement = document.querySelector(".product-grid");
+
+  // Store original product grid HTML
+  if (productGridElement) {
+    window.originalProductGridHTML = productGridElement.innerHTML;
+  }
+
+  // Get all products from all categories
+  function getAllProducts() {
+    const allProducts = [];
+
+    // Add products from categories
+    for (const category in productCategories) {
+      allProducts.push(...productCategories[category]);
+    }
+
+    // Add initial products if they exist
+    if (productGrid) {
+      const initialProducts = [
+        {
+          id: 1,
+          title: "Handwoven Raffia Baskets",
+          vendor: "CR Crafts",
+          price: 73584,
+          originalPrice: 95984,
+          image: "img/made2.jpg",
+          rating: 4.5,
+          reviews: 24,
+          badge: "Popular",
+        },
+        {
+          id: 2,
+          title: "Apple Complete",
+          vendor: "Gigs & Gadgets",
+          price: 2400000,
+          originalPrice: 2900000,
+          image: "img/tgad4.jpg",
+          rating: 4.5,
+          reviews: 24,
+          badge: "Bestseller",
+        },
+        {
+          id: 3,
+          title: "Traditional styled foodware",
+          vendor: "Officepub Crafts",
+          price: 32000,
+          originalPrice: 35900,
+          image: "img/pop3.jpg",
+          rating: 4.5,
+          reviews: 24,
+          badge: "High Demand",
+        },
+        {
+          id: 4,
+          title: "Locally made kitchen tools",
+          vendor: "CR Crafts",
+          price: 73584,
+          originalPrice: 95984,
+          image: "img/tkitch3.jpg",
+          rating: 4.5,
+          reviews: 24,
+          badge: "New Arrival",
+        },
+      ];
+      allProducts.push(...initialProducts);
+    }
+
+    return allProducts;
+  }
+
+  // Search products by title, vendor or description
+  function searchProducts(products, searchTerm) {
+    if (!searchTerm) return products;
+
+    const searchLower = searchTerm.toLowerCase();
+    return products.filter((product) => {
+      return (
+        product.title.toLowerCase().includes(searchLower) ||
+        product.vendor.toLowerCase().includes(searchLower) ||
+        (product.description &&
+          product.description.toLowerCase().includes(searchLower))
+      );
+    });
+  }
+
+  // Filter products by price range
+  function filterProductsByPrice(products, minPrice, maxPrice) {
+    return products.filter((product) => {
+      const price = product.price;
+      return (
+        (minPrice === "" || price >= Number(minPrice)) &&
+        (maxPrice === "" || price <= Number(maxPrice))
+      );
+    });
+  }
+
+  // Create product card HTML
+  function createProductCard(product) {
+    const fullStars = Math.floor(product.rating);
+    const hasHalfStar = product.rating % 1 >= 0.5;
+    let starsHtml = "";
+
+    for (let i = 0; i < 5; i++) {
+      starsHtml +=
+        i < fullStars
+          ? '<i class="fas fa-star"></i>'
+          : i === fullStars && hasHalfStar
+          ? '<i class="fas fa-star-half-alt"></i>'
+          : '<i class="far fa-star"></i>';
+    }
+
+    const productCard = document.createElement("div");
+    productCard.className = "product-card";
+    productCard.innerHTML = `
+      ${
+        product.badge
+          ? `<span class="product-badge">${product.badge}</span>`
+          : ""
+      }
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.title}" loading="lazy">
+        <button class="quick-view-btn" data-product-id="${product.id}">
+          <i class="far fa-eye"></i> Quick View
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-vendor">${product.vendor}</div>
+        <h3 class="product-title">${product.title}</h3>
+        <div class="rating">
+          <div class="rating-stars">${starsHtml}</div>
+          <div class="rating-count">(${product.reviews})</div>
+        </div>
+        <div class="product-price">
+          <span class="current-price">${formatNaira(product.price)}</span>
+          ${
+            product.originalPrice
+              ? `<span class="original-price">${formatNaira(
+                  product.originalPrice
+                )}</span>`
+              : ""
+          }
+        </div>
+        <div class="product-actions">
+          <button class="add-to-cart" data-id="${
+            product.id
+          }">Add to Cart</button>
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+        </div>
+      </div>
+    `;
+    return productCard;
+  }
+
+  // Display filtered products
+  function displayFilteredProducts(
+    products,
+    containerSelector = ".product-grid"
+  ) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (products.length === 0) {
+      container.innerHTML = `
+        <div class="no-results">
+          <p>No products found matching your criteria.</p>
+          <button class="reset-search-button">Show All Products</button>
+        </div>
+      `;
+
+      document
+        .querySelector(".reset-search-button")
+        ?.addEventListener("click", resetSearchAndFilters);
+      return;
+    }
+
+    products.forEach((product) => {
+      const productCard = createProductCard(product);
+      container.appendChild(productCard);
+    });
+
+    initQuickView();
+    initAddToCartButtons();
+  }
+
+  // Apply all active filters
+  function applyAllFilters() {
+    const searchTerm = searchInput.value.trim();
+    const minPrice = priceMinInput.value.trim();
+    const maxPrice = priceMaxInput.value.trim();
+
+    let filteredProducts = getAllProducts();
+
+    // Apply search filter
+    filteredProducts = searchProducts(filteredProducts, searchTerm);
+
+    // Apply price filter
+    filteredProducts = filterProductsByPrice(
+      filteredProducts,
+      minPrice,
+      maxPrice
+    );
+
+    // Display results
+    displayFilteredProducts(filteredProducts);
+  }
+
+  // Reset all filters
+  function resetSearchAndFilters() {
+    searchInput.value = "";
+    priceMinInput.value = "";
+    priceMaxInput.value = "";
+
+    if (productGrid && window.originalProductGridHTML) {
+      productGrid.innerHTML = window.originalProductGridHTML;
+      initQuickView();
+      initAddToCartButtons();
+    } else {
+      displayFilteredProducts(getAllProducts());
+    }
+  }
+
+  // Initialize event listeners for search and filter
+  function initSearchAndFilter() {
+    if (searchButton) {
+      searchButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        applyAllFilters();
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          applyAllFilters();
+        }
+      });
+    }
+
+    if (applyFilterButton) {
+      applyFilterButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        applyAllFilters();
+      });
+    }
+
+    if (resetFilterButton) {
+      resetFilterButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        resetSearchAndFilters();
+      });
+    }
+  }
+
+  // Initialize add to cart buttons for dynamically loaded products
+  function initAddToCartButtons() {
+    document.querySelectorAll(".add-to-cart").forEach((button) => {
+      button.addEventListener("click", function () {
+        const productId = this.dataset.id;
+        const product = getAllProducts().find((p) => p.id == productId);
+        if (product) {
+          addToCart(product);
+        }
+      });
+    });
   }
 
   // Cart Functionality
@@ -66,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cartItemsContainer.innerHTML = "";
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-      cartTotalPrice.textContent = "₦0";
+      cartTotalPrice.textContent = "₦0.00";
       return;
     }
 
@@ -78,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="cart-item-info">
           <h4>${item.title}</h4>
           <p>${item.vendor}</p>
-          <p>${convertToNGN(item.price)}</p>
+          <p>${formatNaira(item.price)}</p>
         </div>
         <div class="cart-item-actions">
           <div class="quantity-selector">
@@ -98,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
       (sum, item) => sum + item.price * item.quantity,
       0
     );
-    cartTotalPrice.textContent = convertToNGN(total);
+    cartTotalPrice.textContent = formatNaira(total);
   }
 
   // Cart Event Listeners
@@ -108,22 +384,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const clearCartBtn = document.querySelector(".clear-cart");
   const checkoutBtn = document.querySelector(".checkout");
   const cartModalOverlay = document.querySelector(".cart-modal .modal-overlay");
-  const checkoutModal = document.querySelector(".checkout-modal");
-  const closeCheckoutModalBtn = document.querySelector(".close-checkout-modal");
-  const checkoutOverlay = document.querySelector(
-    ".checkout-modal .modal-overlay"
-  );
-  const checkoutForms = document.querySelectorAll(".checkout-form");
-  const checkoutSteps = document.querySelectorAll(".checkout-steps .step");
-  const paymentMethods = document.querySelectorAll(".payment-method");
-  const cardDetails = document.querySelector(".card-details");
-  const btnNextList = document.querySelectorAll(".btn-next");
-  const btnPrevList = document.querySelectorAll(".btn-prev");
-  const btnComplete = document.querySelector(".btn-complete");
-  const summaryItemsContainer = document.querySelectorAll(".summary-items");
-  const subtotalElements = document.querySelectorAll(".subtotal");
-  const totalElements = document.querySelectorAll(".total");
-  const shippingDetailsContent = document.querySelector(".details-content");
 
   if (cartBtn) {
     cartBtn.addEventListener("click", () => {
@@ -154,9 +414,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {});
-  }
+  // Checkout Functionality
+  const checkoutModal = document.querySelector(".checkout-modal");
+  const closeCheckoutModalBtn = document.querySelector(".close-checkout-modal");
+  const checkoutOverlay = document.querySelector(
+    ".checkout-modal .modal-overlay"
+  );
+  const checkoutForms = document.querySelectorAll(".checkout-form");
+  const checkoutSteps = document.querySelectorAll(".checkout-steps .step");
+  const paymentMethods = document.querySelectorAll(".payment-method");
+  const cardDetails = document.querySelector(".card-details");
+  const btnNextList = document.querySelectorAll(".btn-next");
+  const btnPrevList = document.querySelectorAll(".btn-prev");
+  const btnComplete = document.querySelector(".btn-complete");
+  const summaryItemsContainer = document.querySelectorAll(".summary-items");
+  const subtotalElements = document.querySelectorAll(".subtotal");
+  const totalElements = document.querySelectorAll(".total");
+  const shippingDetailsContent = document.querySelector(".details-content");
+
   function openCheckoutModal() {
     if (cart.length === 0) {
       showFlashMessage("Your cart is empty. Add some items first!");
@@ -178,26 +453,21 @@ document.addEventListener("DOMContentLoaded", function () {
     updateOrderSummary();
   }
 
-  // Close checkout modal
   function closeCheckoutModal() {
     checkoutModal.classList.remove("active");
     document.body.style.overflow = "";
   }
 
-  // Update order summary with cart items
   function updateOrderSummary() {
-    let subtotalUSD = 0;
+    let subtotal = 0;
 
-    // Calculate subtotal in USD
+    // Calculate subtotal in Naira
     cart.forEach((item) => {
-      subtotalUSD += item.price * item.quantity;
+      subtotal += item.price * item.quantity;
     });
 
-    // Convert to NGN
-    const exchangeRate = 1600;
-    const subtotalNGN = subtotalUSD * exchangeRate;
-    const shippingNGN = 1500; // Fixed shipping cost in NGN
-    const totalNGN = subtotalNGN + shippingNGN;
+    const shipping = 1500; // Fixed shipping cost in NGN
+    const total = subtotal + shipping;
 
     // Update all summary items containers
     summaryItemsContainer.forEach((container) => {
@@ -209,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function () {
         itemElement.innerHTML = `
         <span class="item-name">${item.title}</span>
         <span class="item-quantity">x${item.quantity}</span>
-        <span class="item-price">${convertToNGN(
+        <span class="item-price">${formatNaira(
           item.price * item.quantity
         )}</span>
       `;
@@ -217,19 +487,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Update totals - now all in NGN
+    // Update totals
     subtotalElements.forEach((el) => {
-      el.textContent = `₦${subtotalNGN.toLocaleString("en-NG", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })}`;
+      el.textContent = formatNaira(subtotal);
     });
 
     totalElements.forEach((el) => {
-      el.textContent = `₦${totalNGN.toLocaleString("en-NG", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })}`;
+      el.textContent = formatNaira(total);
     });
 
     // Generate order number
@@ -242,7 +506,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateShippingDetailsPreview();
   }
 
-  // Update shipping details preview in confirmation step
   function updateShippingDetailsPreview() {
     const form = document.getElementById("shipping-form");
     if (!form) return;
@@ -264,7 +527,6 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   }
 
-  // Event listeners
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", openCheckoutModal);
   }
@@ -414,6 +676,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Cart quantity and remove item handlers
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("quantity-minus")) {
       const input = e.target.nextElementSibling;
@@ -579,14 +842,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Product Cards
   const productGrid = document.querySelector(".product-grid");
-  if (productGrid) {
+  if (productGridElement) {
     const products = [
       {
         id: 1,
         title: "Handwoven Raffia Baskets",
         vendor: "CR Crafts",
-        price: 45.99,
-        originalPrice: 59.99,
+        price: 7358,
+        originalPrice: 9598,
         image: "img/made2.jpg",
         rating: 4.5,
         reviews: 24,
@@ -596,8 +859,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 2,
         title: "Apple Complete",
         vendor: "Gigs & Gadgets",
-        price: 4.0,
-        originalPrice: 59.99,
+        price: 2400000,
+        originalPrice: 2900000,
         image: "img/tgad4.jpg",
         rating: 4.5,
         reviews: 24,
@@ -607,8 +870,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 3,
         title: "Traditional styled foodware",
         vendor: "Officepub Crafts",
-        price: 45.99,
-        originalPrice: 59.99,
+        price: 32000,
+        originalPrice: 35900,
         image: "img/pop3.jpg",
         rating: 4.5,
         reviews: 24,
@@ -618,8 +881,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 4,
         title: "Locally made kitchen tools",
         vendor: "CR Crafts",
-        price: 45.99,
-        originalPrice: 59.99,
+        price: 73584,
+        originalPrice: 95984,
         image: "img/tkitch3.jpg",
         rating: 4.5,
         reviews: 24,
@@ -665,10 +928,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="rating-count">(${product.reviews})</div>
           </div>
           <div class="product-price">
-            <span class="current-price">${convertToNGN(product.price)}</span>
+            <span class="current-price">${formatNaira(product.price)}</span>
             ${
               product.originalPrice
-                ? `<span class="original-price">${convertToNGN(
+                ? `<span class="original-price">${formatNaira(
                     product.originalPrice
                   )}</span>`
                 : ""
@@ -724,9 +987,9 @@ document.addEventListener("DOMContentLoaded", function () {
     1: {
       title: "Handwoven Raffia Bag",
       vendor: "CR Crafts",
-      price: 45.99,
+      price: 73584,
       image: "img/made2.jpg",
-      originalPrice: 59.99,
+      originalPrice: 95984,
       description:
         "Beautifully handcrafted raffia bag made by local artisans in Cross River.",
       images: [
@@ -740,9 +1003,9 @@ document.addEventListener("DOMContentLoaded", function () {
     2: {
       title: "Handwoven Raffia Bag",
       vendor: "CR Crafts",
-      price: 45.99,
+      price: 73584,
       Image: "img/made2.jpg",
-      originalPrice: 59.99,
+      originalPrice: 95984,
       description:
         "Beautifully handcrafted raffia bag made by local artisans in Cross River.",
       images: [
@@ -756,9 +1019,9 @@ document.addEventListener("DOMContentLoaded", function () {
     3: {
       title: "Handwoven Raffia Bag",
       vendor: "CR Crafts",
-      price: 45.99,
+      price: 73584,
       Image: "img/made2.jpg",
-      originalPrice: 59.99,
+      originalPrice: 95984,
       description:
         "Beautifully handcrafted raffia bag made by local artisans in Cross River.",
       images: [
@@ -772,9 +1035,9 @@ document.addEventListener("DOMContentLoaded", function () {
     4: {
       title: "Handwoven Raffia Bag",
       vendor: "CR Crafts",
-      price: 45.99,
+      price: 73584,
       Image: "img/tkitch3.jpg",
-      originalPrice: 59.99,
+      originalPrice: 95984,
       description:
         "Beautifully handcrafted raffia bag made by local artisans in Cross River.",
       images: [
@@ -827,12 +1090,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".modal-product-info .vendor").textContent =
       product.vendor;
     document.querySelector(".modal-product-info .current-price").textContent =
-      convertToNGN(product.price);
+      formatNaira(product.price);
 
     if (product.originalPrice) {
       document.querySelector(
         ".modal-product-info .original-price"
-      ).textContent = convertToNGN(product.originalPrice);
+      ).textContent = formatNaira(product.originalPrice);
       document.querySelector(
         ".modal-product-info .original-price"
       ).style.display = "inline";
@@ -942,15 +1205,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Product data for each category
+  // Product data for each category (all prices in Naira)
   const productCategories = {
     trending: [
       {
         id: 101,
         title: "Wireless Earbuds",
         vendor: "TechGadgets",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984,
+        originalPrice: 127984,
         image: "img/nb2.jpg",
         rating: 4.7,
         reviews: 128,
@@ -960,8 +1223,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 102,
         title: "Stanly Cup",
         vendor: "Vicki Home Essentials",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984,
+        originalPrice: 127984,
         image: "img/stanley.jpg",
         rating: 4.7,
         reviews: 128,
@@ -971,8 +1234,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 103,
         title: "7000 puffs vape",
         vendor: "Unyime",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984,
+        originalPrice: 127984,
         image: "img/vape.png",
         rating: 4.7,
         reviews: 128,
@@ -982,8 +1245,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 104,
         title: "Nike Kyrie 4",
         vendor: "Appiah Apparel",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984,
+        originalPrice: 127984,
         image: "img/nike.jpg",
         rating: 4.7,
         reviews: 128,
@@ -993,8 +1256,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 105,
         title: "Two Piece Ankara Summer",
         vendor: "Oby's Couture",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984,
+        originalPrice: 127984,
         image: "img/oby.jpg",
         rating: 4.7,
         reviews: 128,
@@ -1004,8 +1267,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 106,
         title: "2021 Apple Macbook Pro",
         vendor: "TechGadgets",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984,
+        originalPrice: 127984,
         image: "img/eleco.jpg",
         rating: 4.7,
         reviews: 128,
@@ -1017,8 +1280,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 201,
         title: "Beaded String Crafts",
         vendor: "CR Artisans",
-        price: 34.99,
-        originalPrice: 42.99,
+        price: 55984, // 34.99 * 1600
+        originalPrice: 68784, // 42.99 * 1600
         image: "img/made1.jpg",
         rating: 4.9,
         reviews: 56,
@@ -1028,8 +1291,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 202,
         title: "Handmade Storage Baskets",
         vendor: "CR Artisans",
-        price: 34.99,
-        originalPrice: 42.99,
+        price: 55984,
+        originalPrice: 68784,
         image: "img/made2.jpg",
         rating: 4.9,
         reviews: 56,
@@ -1039,8 +1302,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 203,
         title: "Handcarved Wooden Bowl",
         vendor: "CR Artisans",
-        price: 34.99,
-        originalPrice: 42.99,
+        price: 55984,
+        originalPrice: 68784,
         image: "img/made3.jpg",
         rating: 4.9,
         reviews: 56,
@@ -1050,8 +1313,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 204,
         title: "Handcrafted Tapistry",
         vendor: "CR Artisans",
-        price: 34.99,
-        originalPrice: 42.99,
+        price: 55984,
+        originalPrice: 68784,
         image: "img/made4.jpg",
         rating: 4.9,
         reviews: 56,
@@ -1061,8 +1324,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 205,
         title: "Handmade Shopping Basket",
         vendor: "CR Artisans",
-        price: 34.99,
-        originalPrice: 42.99,
+        price: 55984,
+        originalPrice: 68784,
         image: "img/made5.jpg",
         rating: 4.9,
         reviews: 56,
@@ -1072,8 +1335,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 206,
         title: "Handcarved Wooden Kitchen Set",
         vendor: "CR Artisans",
-        price: 34.99,
-        originalPrice: 42.99,
+        price: 55984,
+        originalPrice: 68784,
         image: "img/made6.jpg",
         rating: 4.9,
         reviews: 56,
@@ -1085,8 +1348,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 301,
         title: "Smart Headphones",
         vendor: "TechDeals",
-        price: 89.99,
-        originalPrice: 129.99,
+        price: 143984, // 89.99 * 1600
+        originalPrice: 207984, // 129.99 * 1600
         image: "img/tgad.jpg",
         rating: 4.5,
         reviews: 214,
@@ -1096,8 +1359,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 302,
         title: "9th Gen Laptop PC",
         vendor: "TechDeals",
-        price: 89.99,
-        originalPrice: 129.99,
+        price: 143984,
+        originalPrice: 207984,
         image: "img/tgad2.jpg",
         rating: 4.5,
         reviews: 214,
@@ -1107,8 +1370,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 303,
         title: "Home Music Carryons",
         vendor: "TechDeals",
-        price: 89.99,
-        originalPrice: 129.99,
+        price: 143984,
+        originalPrice: 207984,
         image: "img/tgad3.jpg",
         rating: 4.5,
         reviews: 214,
@@ -1118,8 +1381,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 304,
         title: "Apple Gadget Set",
         vendor: "TechDeals",
-        price: 89.99,
-        originalPrice: 129.99,
+        price: 143984,
+        originalPrice: 207984,
         image: "img/tgad4.jpg",
         rating: 4.5,
         reviews: 214,
@@ -1129,8 +1392,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 305,
         title: "Pink Apple Set For Him",
         vendor: "TechDeals",
-        price: 89.99,
-        originalPrice: 129.99,
+        price: 143984,
+        originalPrice: 207984,
         image: "img/tgad5.jpg",
         rating: 4.5,
         reviews: 214,
@@ -1140,8 +1403,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 306,
         title: "Smart Watch",
         vendor: "TechDeals",
-        price: 89.99,
-        originalPrice: 129.99,
+        price: 143984,
+        originalPrice: 207984,
         image: "img/tgad6.jpg",
         rating: 4.5,
         reviews: 214,
@@ -1153,8 +1416,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 401,
         title: "Men's Ankara Shirt",
         vendor: "CR Fashion",
-        price: 39.99,
-        originalPrice: 49.99,
+        price: 63984, // 39.99 * 1600
+        originalPrice: 79984, // 49.99 * 1600
         image: "img/male.jpg",
         rating: 4.6,
         reviews: 89,
@@ -1164,8 +1427,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 402,
         title: "Leather Loafers",
         vendor: "StyleHub",
-        price: 69.99,
-        originalPrice: 89.99,
+        price: 111984, // 69.99 * 1600
+        originalPrice: 143984, // 89.99 * 1600
         image: "img/male1.png",
         rating: 4.8,
         reviews: 102,
@@ -1175,8 +1438,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 403,
         title: "Men's Blazer",
         vendor: "CR Fashion",
-        price: 99.99,
-        originalPrice: 129.99,
+        price: 159984, // 99.99 * 1600
+        originalPrice: 207984, // 129.99 * 1600
         image: "img/male2.jpg",
         rating: 4.7,
         reviews: 67,
@@ -1186,8 +1449,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 404,
         title: "Casual Jeans",
         vendor: "StyleHub",
-        price: 49.99,
-        originalPrice: 59.99,
+        price: 79984, // 49.99 * 1600
+        originalPrice: 95984, // 59.99 * 1600
         image: "img/male3.jpg",
         rating: 4.5,
         reviews: 134,
@@ -1197,8 +1460,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 405,
         title: "Graphic Tee",
         vendor: "CR Fashion",
-        price: 29.99,
-        originalPrice: 39.99,
+        price: 47984, // 29.99 * 1600
+        originalPrice: 63984, // 39.99 * 1600
         image: "img/male4.jpg",
         rating: 4.4,
         reviews: 98,
@@ -1208,8 +1471,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 406,
         title: "Men's Watch",
         vendor: "StyleHub",
-        price: 79.99,
-        originalPrice: 99.99,
+        price: 127984, // 79.99 * 1600
+        originalPrice: 159984, // 99.99 * 1600
         image: "img/male5.jpg",
         rating: 4.9,
         reviews: 76,
@@ -1221,8 +1484,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 501,
         title: "Ankara Dress",
         vendor: "CR Couture",
-        price: 59.99,
-        originalPrice: 79.99,
+        price: 95984, // 59.99 * 1600
+        originalPrice: 127984, // 79.99 * 1600
         image: "img/female.jpg",
         rating: 4.8,
         reviews: 112,
@@ -1232,8 +1495,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 502,
         title: "High Heels",
         vendor: "Elegance",
-        price: 89.99,
-        originalPrice: 109.99,
+        price: 143984, // 89.99 * 1600
+        originalPrice: 175984, // 109.99 * 1600
         image: "img/female1.jpg",
         rating: 4.7,
         reviews: 95,
@@ -1243,8 +1506,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 503,
         title: "Handbag",
         vendor: "CR Couture",
-        price: 49.99,
-        originalPrice: 69.99,
+        price: 79984, // 49.99 * 1600
+        originalPrice: 111984, // 69.99 * 1600
         image: "img/female2.jpg",
         rating: 4.6,
         reviews: 88,
@@ -1254,8 +1517,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 504,
         title: "Maxi Skirt",
         vendor: "Elegance",
-        price: 39.99,
-        originalPrice: 49.99,
+        price: 63984, // 39.99 * 1600
+        originalPrice: 79984, // 49.99 * 1600
         image: "img/female3.jpg",
         rating: 4.5,
         reviews: 123,
@@ -1265,8 +1528,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 505,
         title: "Blouse",
         vendor: "CR Couture",
-        price: 29.99,
-        originalPrice: 39.99,
+        price: 47984, // 29.99 * 1600
+        originalPrice: 63984, // 39.99 * 1600
         image: "img/female4.jpg",
         rating: 4.4,
         reviews: 107,
@@ -1276,8 +1539,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 506,
         title: "Necklace Set",
         vendor: "Elegance",
-        price: 69.99,
-        originalPrice: 89.99,
+        price: 111984, // 69.99 * 1600
+        originalPrice: 143984, // 89.99 * 1600
         image: "img/female5.jpg",
         rating: 4.9,
         reviews: 65,
@@ -1289,8 +1552,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 601,
         title: "Unisex Hoodie",
         vendor: "CR Trends",
-        price: 49.99,
-        originalPrice: 59.99,
+        price: 79984, // 49.99 * 1600
+        originalPrice: 95984, // 59.99 * 1600
         image: "img/uni.jpg",
         rating: 4.7,
         reviews: 145,
@@ -1300,8 +1563,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 602,
         title: "Sneakers",
         vendor: "StyleZone",
-        price: 79.99,
-        originalPrice: 99.99,
+        price: 127984, // 79.99 * 1600
+        originalPrice: 159984, // 99.99 * 1600
         image: "img/uni1.jpg",
         rating: 4.8,
         reviews: 132,
@@ -1311,8 +1574,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 603,
         title: "Backpack",
         vendor: "CR Trends",
-        price: 39.99,
-        originalPrice: 49.99,
+        price: 63984, // 39.99 * 1600
+        originalPrice: 79984, // 49.99 * 1600
         image: "img/uni2.jpg",
         rating: 4.6,
         reviews: 99,
@@ -1322,8 +1585,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 604,
         title: "Cap",
         vendor: "StyleZone",
-        price: 19.99,
-        originalPrice: 29.99,
+        price: 31984, // 19.99 * 1600
+        originalPrice: 47984, // 29.99 * 1600
         image: "img/uni3.jpg",
         rating: 4.5,
         reviews: 156,
@@ -1333,8 +1596,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 605,
         title: "Sunglasses",
         vendor: "CR Trends",
-        price: 29.99,
-        originalPrice: 39.99,
+        price: 47984, // 29.99 * 1600
+        originalPrice: 63984, // 39.99 * 1600
         image: "img/uni4.jpg",
         rating: 4.4,
         reviews: 111,
@@ -1344,8 +1607,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 606,
         title: "Wristband",
         vendor: "StyleZone",
-        price: 14.99,
-        originalPrice: 19.99,
+        price: 23984, // 14.99 * 1600
+        originalPrice: 31984, // 19.99 * 1600
         image: "img/uni5.jpg",
         rating: 4.3,
         reviews: 87,
@@ -1357,8 +1620,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 701,
         title: "Smart TV",
         vendor: "TechZone",
-        price: 399.99,
-        originalPrice: 499.99,
+        price: 639984, // 399.99 * 1600
+        originalPrice: 799984, // 499.99 * 1600
         image: "img/gen.jpg",
         rating: 4.8,
         reviews: 189,
@@ -1368,8 +1631,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 702,
         title: "Laptop",
         vendor: "GadgetsPro",
-        price: 799.99,
-        originalPrice: 999.99,
+        price: 1279984, // 799.99 * 1600
+        originalPrice: 1599984, // 999.99 * 1600
         image: "img/gen1.jpg",
         rating: 4.7,
         reviews: 165,
@@ -1379,8 +1642,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 703,
         title: "Home Theater",
         vendor: "TechZone",
-        price: 299.99,
-        originalPrice: 399.99,
+        price: 479984, // 299.99 * 1600
+        originalPrice: 639984, // 399.99 * 1600
         image: "img/gen2.jpg",
         rating: 4.6,
         reviews: 134,
@@ -1390,8 +1653,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 704,
         title: "Desktop PC",
         vendor: "GadgetsPro",
-        price: 599.99,
-        originalPrice: 799.99,
+        price: 959984, // 599.99 * 1600
+        originalPrice: 1279984, // 799.99 * 1600
         image: "img/gen3.jpg",
         rating: 4.5,
         reviews: 122,
@@ -1401,8 +1664,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 705,
         title: "Gaming Console",
         vendor: "TechZone",
-        price: 399.99,
-        originalPrice: 499.99,
+        price: 639984, // 399.99 * 1600
+        originalPrice: 799984, // 499.99 * 1600
         image: "img/gen4.jpg",
         rating: 4.9,
         reviews: 198,
@@ -1412,8 +1675,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 706,
         title: "Projector",
         vendor: "GadgetsPro",
-        price: 249.99,
-        originalPrice: 349.99,
+        price: 399984, // 249.99 * 1600
+        originalPrice: 559984, // 349.99 * 1600
         image: "img/gen5.jpg",
         rating: 4.4,
         reviews: 109,
@@ -1425,8 +1688,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 801,
         title: "Smartphone Pro",
         vendor: "TechTrend",
-        price: 699.99,
-        originalPrice: 899.99,
+        price: 1119984, // 699.99 * 1600
+        originalPrice: 1439984, // 899.99 * 1600
         image: "img/phone5.jpg",
         rating: 4.8,
         reviews: 234,
@@ -1436,8 +1699,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 802,
         title: "Budget Phone",
         vendor: "GadgetWorld",
-        price: 199.99,
-        originalPrice: 249.99,
+        price: 319984, // 199.99 * 1600
+        originalPrice: 399984, // 249.99 * 1600
         image: "img/phone.jpg",
         rating: 4.6,
         reviews: 178,
@@ -1447,8 +1710,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 803,
         title: "Flagship Phone",
         vendor: "TechTrend",
-        price: 999.99,
-        originalPrice: 1199.99,
+        price: 1599984, // 999.99 * 1600
+        originalPrice: 1919984, // 1199.99 * 1600
         image: "img/phone1.jpg",
         rating: 4.9,
         reviews: 256,
@@ -1458,8 +1721,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 804,
         title: "Midrange Phone",
         vendor: "GadgetWorld",
-        price: 399.99,
-        originalPrice: 499.99,
+        price: 639984, // 399.99 * 1600
+        originalPrice: 799984, // 499.99 * 1600
         image: "img/phone2.jpg",
         rating: 4.7,
         reviews: 199,
@@ -1469,8 +1732,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 805,
         title: "Foldable Phone",
         vendor: "TechTrend",
-        price: 1299.99,
-        originalPrice: 1499.99,
+        price: 2079984, // 1299.99 * 1600
+        originalPrice: 2399984, // 1499.99 * 1600
         image: "img/phone3.jpg",
         rating: 4.8,
         reviews: 167,
@@ -1480,8 +1743,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 806,
         title: "Rugged Phone",
         vendor: "GadgetWorld",
-        price: 299.99,
-        originalPrice: 399.99,
+        price: 479984, // 299.99 * 1600
+        originalPrice: 639984, // 399.99 * 1600
         image: "img/phone4.jpg",
         rating: 4.5,
         reviews: 145,
@@ -1493,8 +1756,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 901,
         title: "Wireless Charger",
         vendor: "TechBits",
-        price: 29.99,
-        originalPrice: 39.99,
+        price: 47984, // 29.99 * 1600
+        originalPrice: 63984, // 39.99 * 1600
         image: "img/acc.jpg",
         rating: 4.7,
         reviews: 156,
@@ -1504,8 +1767,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 902,
         title: "Bluetooth Earbuds",
         vendor: "GadgetGear",
-        price: 49.99,
-        originalPrice: 69.99,
+        price: 79984, // 49.99 * 1600
+        originalPrice: 111984, // 69.99 * 1600
         image: "img/acc1.jpg",
         rating: 4.8,
         reviews: 189,
@@ -1515,8 +1778,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 903,
         title: "Phone Case",
         vendor: "TechBits",
-        price: 19.99,
-        originalPrice: 29.99,
+        price: 31984, // 19.99 * 1600
+        originalPrice: 47984, // 29.99 * 1600
         image: "img/acc2.jpg",
         rating: 4.6,
         reviews: 134,
@@ -1526,8 +1789,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 904,
         title: "Screen Protector",
         vendor: "GadgetGear",
-        price: 14.99,
-        originalPrice: 19.99,
+        price: 23984, // 14.99 * 1600
+        originalPrice: 31984, // 19.99 * 1600
         image: "img/acc3.jpg",
         rating: 4.5,
         reviews: 167,
@@ -1537,8 +1800,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 905,
         title: "Smartwatch Band",
         vendor: "TechBits",
-        price: 24.99,
-        originalPrice: 34.99,
+        price: 39984, // 24.99 * 1600
+        originalPrice: 55984, // 34.99 * 1600
         image: "img/acc4.jpg",
         rating: 4.4,
         reviews: 123,
@@ -1548,8 +1811,8 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 906,
         title: "USB-C Cable",
         vendor: "GadgetGear",
-        price: 9.99,
-        originalPrice: 14.99,
+        price: 15984, // 9.99 * 1600
+        originalPrice: 23984, // 14.99 * 1600
         image: "img/acc5.jpg",
         rating: 4.3,
         reviews: 198,
@@ -1737,10 +2000,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="rating-count">(${product.reviews})</div>
           </div>
           <div class="product-price">
-            <span class="current-price">${convertToNGN(product.price)}</span>
+            <span class="current-price">${formatNaira(product.price)}</span>
             ${
               product.originalPrice
-                ? `<span class="original-price">${convertToNGN(
+                ? `<span class="original-price">${formatNaira(
                     product.originalPrice
                   )}</span>`
                 : ""
@@ -1769,6 +2032,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+  initSearchAndFilter();
+  initAddToCartButtons();
 
   // Initialize all sections
   initTabCarousels(".featured-products");

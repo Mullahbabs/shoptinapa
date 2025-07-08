@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradiseport - Premium E-Commerce Platform</title>
+    <meta
+      name="description"
+      content="Discover authentic made in Cross River products and more on paradiseport premium e-commerce platform"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="container">
+        <div class="top-header-content">
+          <div class="welcome-message" style="color: white">
+            <span class="fa fa-idea" style="color: aqua"></span> Think
+            Crossriver
+          </div>
+          <div class="top-header-links">
+            <a href="#"><i class="fas fa-user"></i> Sign In</a>
+            <a href="#" class="sign-up-btn"
+              ><i class="fas fa-user-plus"></i> Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Header -->
+    <header class="main-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <img src="img/logo/Paradiselogo.png" alt="Tinapa Logo" />
+          </div>
+          <div class="dark-mode-toggle">
+            <input
+              type="checkbox"
+              id="darkModeToggle"
+              class="toggle-checkbox"
+            />
+            <label for="darkModeToggle" class="toggle-label">
+              <i class="fas fa-moon">Dark-Mode</i>
+              <i class="fas fa-sun">Light-Mode</i>
+              <span class="toggle-ball"></span>
+            </label>
+          </div>
+
+          <div class="search-bar">
+            <div class="search-container">
+              <select class="category-select">
+                <option>All Categories</option>
+                <option>Electronics</option>
+                <option>Fashion</option>
+                <option>Food & Groceries</option>
+                <option>Handicrafts</option>
+              </select>
+              <input type="text" placeholder="Search for products, brands..." />
+              <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <div class="header-help">
+              <select class="help-select">
+                <option>Help Center</option>
+                <option>Track Order</option>
+                <option>Delivery Support</option>
+                <option>Become A Vendor</option>
+              </select>
+            </div>
+            <div class="action-icons header-actions">
+              <a href="#" class="action-icon" title="Wishlist">
+                <i class="far fa-heart"></i>
+                <span class="badge">0</span>
+              </a>
+            </div>  
+              <div class="header-actions">
+            <button class="cart-btn" aria-label="View cart">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </button>
+              <a href="#" class="action-icon" title="Account">
+                <i class="far fa-user"></i>
+              </a>
+            </div>
+             <button
+              class="mobile-menu-toggle"
+              aria-label="Toggle mobile menu"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <ul class="nav-menu">
+          <li>
+            <a href="#" class="nav-link"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link active"
+              ><i class="fas fa-store"></i> Marketplace
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Electronics</h4>
+                <a href="#" class="active">Smartphones</a>
+                <a href="#">Laptops</a>
+                <a href="#">Home Appliances</a>
+                <a href="#">Accessories</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Fashion</h4>
+                <a href="#">Men's Clothing</a>
+                <a href="#">Women's Clothing</a>
+                <a href="#">Jewelry</a>
+                <a href="#">Footwear</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Home & Living</h4>
+                <a href="#">Furniture</a>
+                <a href="#">Decor</a>
+                <a href="#">Kitchenware</a>
+                <a href="#">Gardening</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-flag"></i> Made in CR
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Local Crafts</h4>
+                <a href="#">Wood Carvings</a>
+                <a href="#">Beadwork</a>
+                <a href="#">Traditional Textiles</a>
+                <a href="#">Pottery</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Local Produce</h4>
+                <a href="#">Tinapa Fish</a>
+                <a href="#">Palm Oil</a>
+                <a href="#">Cocoa Products</a>
+                <a href="#">Spices</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Art & Culture</h4>
+                <a href="#">Paintings</a>
+                <a href="#">Sculptures</a>
+                <a href="#">Cultural Items</a>
+                <a href="#">Music Instruments</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-shopping-basket"></i> Supermarket
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Food & Beverages</h4>
+                <a href="#">Fresh Produce</a>
+                <a href="#">Dairy</a>
+                <a href="#">Bakery</a>
+                <a href="#">Beverages</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Household</h4>
+                <a href="#">Cleaning Supplies</a>
+                <a href="#">Laundry</a>
+                <a href="#">Storage</a>
+                <a href="#">Utensils</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Health & Beauty</h4>
+                <a href="#">Personal Care</a>
+                <a href="#">Cosmetics</a>
+                <a href="#">Vitamins</a>
+                <a href="#">Medical Supplies</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link"
+              ><i class="fas fa-info-circle"></i> About Us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close mobile menu">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-menu">
+          <li>
+            <a href="#" class="nav-link active"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-store"></i> Marketplace
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Electronics</h4>
+                <a href="#">Smartphones</a>
+                <a href="#">Laptops</a>
+                <a href="#">Home Appliances</a>
+                <a href="#">Accessories</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Fashion</h4>
+                <a href="#">Men's Clothing</a>
+                <a href="#">Women's Clothing</a>
+                <a href="#">Jewelry</a>
+                <a href="#">Footwear</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Home & Living</h4>
+                <a href="#">Furniture</a>
+                <a href="#">Decor</a>
+                <a href="#">Kitchenware</a>
+                <a href="#">Gardening</a>
+              </div>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-flag"></i> Made in CR
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Local Crafts</h4>
+                <a href="#">Wood Carvings</a>
+                <a href="#">Beadwork</a>
+                <a href="#">Traditional Textiles</a>
+                <a href="#">Pottery</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Local Produce</h4>
+                <a href="#">Tinapa Fish</a>
+                <a href="#">Palm Oil</a>
+                <a href="#">Cocoa Products</a>
+                <a href="#">Spices</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Art & Culture</h4>
+                <a href="#">Paintings</a>
+                <a href="#">Sculptures</a>
+                <a href="#">Cultural Items</a>
+                <a href="#">Music Instruments</a>
+              </div>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-shopping-basket"></i> Supermarket
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Food & Beverages</h4>
+                <a href="#">Fresh Produce</a>
+                <a href="#">Dairy</a>
+                <a href="#">Bakery</a>
+                <a href="#">Beverages</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Household</h4>
+                <a href="#">Cleaning Supplies</a>
+                <a href="#">Laundry</a>
+                <a href="#">Storage</a>
+                <a href="#">Utensils</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Health & Beauty</h4>
+                <a href="#">Personal Care</a>
+                <a href="#">Cosmetics</a>
+                <a href="#">Vitamins</a>
+                <a href="#">Medical Supplies</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link"
+              ><i class="fas fa-info-circle"></i> About Us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay"></div>
+    </nav>
+    <div class="ticker-container">
+      <div class="ticker-text">
+        ✨ Fresh Made In Cross River Products Daily! |
+         🚚 Free Delivery in Calabar on Orders Over ₦10,000 |
+          ⏳ Flash Sale: 30% Off Local Crafts! |
+           📱 Follow @Paradiseport
+      </div>
+    </div>
+
+    <section class="hero-banner-zenith">
+        <div class="hero-banner-zenith__content">
+            <h1 class="hero-banner-zenith__title">Discover Your Next Adventure</h1>
+            <p class="hero-banner-zenith__subtitle">Explore the world with our expertly crafted journeys that take you beyond the ordinary and into the extraordinary.</p>
+            <div class="hero-banner-zenith__dropdown">
+                <button class="hero-banner-zenith__dropdown-btn">Browse Categories ▼</button>
+                <div class="hero-banner-zenith__dropdown-content">
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Flagship Phones</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Budget Devices</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Gaming Phones</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Camera-Focused</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Business Edition</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Eco-Friendly Models</a>
+                </div>
+            </div>    
+        </div>
+    </section>
+
+    
+
+    <div class="search-filter-container">
+      <div class="container">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search products...">
+          <button class="search-button">Search</button>
+        </div>
+
+    <div class="price-filter-container">
+      <div class="price-filter-group">
+        <label for="price-min">Min Price (₦):</label>
+        <input type="number" class="price-filter-input price-min" id="price-min" placeholder="Minimum">
+    </div>
+    <div class="price-filter-group">
+      <label for="price-max">Max Price (₦):</label>
+      <input type="number" class="price-filter-input price-max" id="price-max" placeholder="Maximum">
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-button apply-filter">Apply Filter</button>
+      <button class="filter-button reset-filter">Reset All</button>
+    </div>
+  </div>
+  </div>  
+
+  <section class="partners-section">
+  <h3 class="section3-title">Our Trusted Partners</h3>
+  <div class="partners-ticker">
+    <div class="partners-track">
+      <!-- First set of logos -->
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 1" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 2" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 3" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 4" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 5" loading="lazy">
+      </div>
+      
+      <!-- Duplicate set for seamless looping -->
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 1" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 2" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 3" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 4" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 5" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+    <!-- Vibrant Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- About Column -->
+          <div class="footer-column about-column">
+            <div class="footer-logo">
+              <img src="img/logo/Paradiselogo.png" alt="Paradiseport" />
+            </div>
+            <p class="footer-about">
+              Paradiseport brings you the finest products from Cross River and beyond.
+              We're committed to quality, authenticity, and exceptional service.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Quick Links Column -->
+          <div class="footer-column">
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+
+          <!-- Categories Column -->
+          <div class="footer-column">
+            <h3 class="footer-heading">Categories</h3>
+            <ul class="footer-links">
+              <li><a href="#">Electronics</a></li>
+              <li><a href="#">Fashion</a></li>
+              <li><a href="#">Home & Living</a></li>
+              <li><a href="#">Supermarket</a></li>
+              <li><a href="#">Local Crafts</a></li>
+              <li><a href="#">Special Offers</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Column -->
+          <div class="footer-column contact-column">
+            <h3 class="footer-heading">Contact Us</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Okoi Arikpo House,
+                Calabar, Nigeria
+              </li>
+              <li><i class="fas fa-phone"></i> +234 800 123 4567</li>
+              <li><i class="fas fa-envelope"></i> hello@Paradiseport.com</li>
+            </ul>
+
+            <div class="newsletter">
+              <h4>Newsletter</h4>
+              <p>Subscribe for updates and promotions</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required />
+                <button type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick View Modal -->
+        <div class="quick-view-modal">
+          <div class="modal-overlay"></div>
+          <div class="modal-container">
+            <button class="close-modal">&times;</button>
+            <div class="modal-content">
+              <div class="modal-product-gallery">
+                <div class="main-image">
+                  <img src="" alt="Product Image" />
+                </div>
+                <div class="thumbnail-container">
+                  <!-- Thumbnails will be added by JavaScript -->
+                </div>
+              </div>
+              <div class="modal-product-info">
+                <h2 class="product-title"></h2>
+                <div class="product-meta">
+                  <span class="vendor"></span>
+                  <div class="rating">
+                    <div class="rating-stars"></div>
+                    <span class="review-count"></span>
+                  </div>
+                </div>
+                <div class="product-price">
+                  <span class="current-price"></span>
+                  <span class="original-price"></span>
+                </div>
+                <div class="product-description">
+                  <p></p>
+                </div>
+                <div class="product-actions">
+                  <div class="quantity-selector">
+                    <button class="quantity-minus">-</button>
+                    <input type="number" value="1" min="1" />
+                    <button class="quantity-plus">+</button>
+                  </div>
+                  <button class="add-to-cart">Add to Cart</button>
+                  <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                  </button>
+                </div>
+                <div class="product-meta-footer">
+                  <div class="meta-item">
+                    <i class="fas fa-box-open"></i>
+                    <span>Free shipping on orders over $50</span>
+                  </div>
+                  <div class="meta-item">
+                    <i class="fas fa-undo"></i>
+                    <span>30-day easy returns</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="fpayment-method">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+            <i class="fab fa-cc-apple-pay"></i>
+          </div>
+          <div class="copyright">
+            &copy; 2025 Paradiseport. All Rights Reserved.
+          </div>
+          <div class="copyright">
+            Powered by <a href="" style="color: #ffc107;">BellaTECH NG.</a>
+          </div>
+          <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Shipping Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/ticker.js"></script>
+  </body>
+</html>

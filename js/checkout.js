@@ -239,7 +239,7 @@ if (btnComplete) {
     // Close modal after delay
     setTimeout(() => {
       closeCheckoutModal();
-      showFlashMessage("Thank you for your order!");
+      showFlashMessage("Thank you for shopping with Paradiseport!");
     }, 1000);
   });
 }
