@@ -99,7 +99,7 @@ body {
 .logo img {
   height: 45px;
   border-radius: 8px;
-  width: auto;
+  width: 70px;
   transition: var(--transition);
 }
 
