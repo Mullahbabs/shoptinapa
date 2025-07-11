@@ -1820,8 +1820,9 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     ],
     smartphonesapple: [
+      //smartphonesapple
       {
-        id: 711,
+        id: 5,
         title: "Iphone 16 128GB",
         vendor: "Gigs & Gadgets",
         price: 2100000,
@@ -1832,7 +1833,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "New",
       },
       {
-        id: 299,
+        id: 6,
         title: "Iphone 13 pro 64GB",
         vendor: "GadgetGear",
         description: "64GB UK used 13 pro",
@@ -1844,7 +1845,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "Popular",
       },
       {
-        id: 399,
+        id: 7,
         title: "IPhone 13 promax 256GB",
         vendor: "TechBits",
         price: 752000,
@@ -1856,7 +1857,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "Trending",
       },
       {
-        id: 499,
+        id: 8,
         title: "Iphone 8Plus 128GB",
         vendor: "GadgetGear",
         price: 289845,
@@ -1868,7 +1869,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "Bestseller",
       },
       {
-        id: 599,
+        id: 9,
         title: "Iphone 12",
         vendor: "TechBits",
         price: 69984,
@@ -1879,7 +1880,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "Sale",
       },
       {
-        id: 699,
+        id: 10,
         title: "Phone 11 64GB",
         vendor: "GadgetGear",
         price: 355984,
@@ -1890,7 +1891,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "Essential",
       },
       {
-        id: 599,
+        id: 11,
         title: "Iphone 14 promax 512GB",
         vendor: "Gigs & Gadgets",
         price: 1199845,
@@ -1901,7 +1902,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge: "Sale",
       },
       {
-        id: 699,
+        id: 12,
         title: "Iphone 13 promax 512GB",
         vendor: "GadgetGear",
         price: 765984,
@@ -1911,29 +1912,141 @@ document.addEventListener("DOMContentLoaded", function () {
         reviews: 198,
         badge: "Essential",
       },
+
+      //smartphonessamsung
+      {
+        id: 13,
+        title: "Samsung Galaxy s23 Ultra",
+        vendor: "Gigs & Gadgets",
+        price: 600000,
+        originalPrice: 630000,
+        image: "img/phones/s1.jpg",
+        rating: 4.7,
+        reviews: 156,
+        badge: "New",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 14,
+        title: "Samsung",
+        vendor: "GadgetGear",
+        description: "",
+        price: 699845,
+        originalPrice: 724000,
+        image: "img/phones/s2.jpg",
+        rating: 4.8,
+        reviews: 189,
+        badge: "Popular",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 15,
+        title: "Samsung Galaxy s23 Ultra",
+        vendor: "TechBits",
+        price: 752000,
+        originalPrice: 774000,
+        description: "new",
+        image: "img/phones/s3.jpg",
+        rating: 4.6,
+        reviews: 134,
+        badge: "Trending",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 16,
+        title: "Samsung ",
+        vendor: "GadgetGear",
+        price: 289845,
+        originalPrice: 319845,
+        description: "",
+        image: "img/phones/s4.jpg",
+        rating: 4.5,
+        reviews: 167,
+        badge: "Bestseller",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 17,
+        title: "Samsung",
+        vendor: "TechBits",
+        price: 69984,
+        originalPrice: 559845,
+        image: "img/phones/s5.jpg",
+        rating: 4.4,
+        reviews: 123,
+        badge: "Sale",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 18,
+        title: "Samsung",
+        vendor: "GadgetGear",
+        price: 355984,
+        originalPrice: 323984,
+        image: "img/phones/s6.jpg",
+        rating: 4.3,
+        reviews: 198,
+        badge: "Essential",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 19,
+        title: "Samsung",
+        vendor: "Gigs & Gadgets",
+        price: 1199845,
+        originalPrice: 9255984,
+        image: "img/phones/s7.jpg",
+        rating: 4.4,
+        reviews: 123,
+        badge: "Sale",
+        section: "smartphonessamsung",
+      },
+      {
+        id: 20,
+        title: "Samsung Flip 3",
+        vendor: "GadgetGear",
+        price: 765984,
+        originalPrice: 6923984,
+        image: "img/phones/s8.jpg",
+        rating: 4.3,
+        reviews: 198,
+        badge: "Essential",
+        section: "smartphonessamsung",
+      },
     ],
   };
   // ==================== CATEGORY PAGE DISPLAY ====================
-  function displayCategoryProducts(categoryId) {
-    const categoryContainer = document.querySelector(`.category-${categoryId}`);
-    if (!categoryContainer) return;
+  function displayCategoryProducts(categoryId, section = null) {
+    const containerClass = section
+      ? `.category-${categoryId}-${section}`
+      : `.category-${categoryId}`;
 
-    const products = productCategories[categoryId] || [];
-    displayFilteredProducts(products, `.category-${categoryId}`);
+    const container = document.querySelector(containerClass);
+    if (!container) return;
+
+    // Filter products by category + section (if provided)
+    let products = productCategories[categoryId] || [];
+    if (section) {
+      products = products.filter((product) => product.section === section);
+    }
+
+    displayFilteredProducts(products, containerClass);
   }
 
   // ==================== INITIALIZE CATEGORY PAGES ====================
   function initCategoryPages() {
-    // Check if we're on a category page
     const categoryPage = document.querySelector("[data-category-page]");
     if (!categoryPage) return;
 
     const categoryId = categoryPage.dataset.categoryPage;
-    if (productCategories[categoryId]) {
-      displayCategoryProducts(categoryId);
-    }
-  }
 
+    // Display ALL products in the main category container
+    displayCategoryProducts(categoryId);
+
+    // Display SUBSECTIONS (if they exist in HTML)
+    displayCategoryProducts(categoryId, "smartphonessamsung"); // Load fruits
+    displayCategoryProducts(categoryId, "dairy"); // Load dairy
+  }
   // Initialize all carousels
   initCategoryPages();
   const carouselIntervals = new Map();
