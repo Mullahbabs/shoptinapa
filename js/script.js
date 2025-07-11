@@ -1811,17 +1811,131 @@ document.addEventListener("DOMContentLoaded", function () {
         id: 906,
         title: "USB-C Cable",
         vendor: "GadgetGear",
-        price: 15984, // 9.99 * 1600
-        originalPrice: 23984, // 14.99 * 1600
+        price: 15984,
+        originalPrice: 23984,
         image: "img/acc5.jpg",
         rating: 4.3,
         reviews: 198,
         badge: "Essential",
       },
     ],
+    smartphonesapple: [
+      {
+        id: 711,
+        title: "Iphone 16 128GB",
+        vendor: "Gigs & Gadgets",
+        price: 2100000,
+        originalPrice: 2300000,
+        image: "img/phones/a1.jpg",
+        rating: 4.7,
+        reviews: 156,
+        badge: "New",
+      },
+      {
+        id: 299,
+        title: "Iphone 13 pro 64GB",
+        vendor: "GadgetGear",
+        description: "64GB UK used 13 pro",
+        price: 699845,
+        originalPrice: 724000,
+        image: "img/phones/a2.jpg",
+        rating: 4.8,
+        reviews: 189,
+        badge: "Popular",
+      },
+      {
+        id: 399,
+        title: "IPhone 13 promax 256GB",
+        vendor: "TechBits",
+        price: 752000,
+        originalPrice: 774000,
+        description: "256GB UK used 13 promax",
+        image: "img/phones/a3.jpg",
+        rating: 4.6,
+        reviews: 134,
+        badge: "Trending",
+      },
+      {
+        id: 499,
+        title: "Iphone 8Plus 128GB",
+        vendor: "GadgetGear",
+        price: 289845,
+        originalPrice: 319845,
+        description: "128GB UK used Iphone 8plus",
+        image: "img/phones/a4.jpg",
+        rating: 4.5,
+        reviews: 167,
+        badge: "Bestseller",
+      },
+      {
+        id: 599,
+        title: "Iphone 12",
+        vendor: "TechBits",
+        price: 69984,
+        originalPrice: 559845,
+        image: "img/phones/a5.jpg",
+        rating: 4.4,
+        reviews: 123,
+        badge: "Sale",
+      },
+      {
+        id: 699,
+        title: "Phone 11 64GB",
+        vendor: "GadgetGear",
+        price: 355984,
+        originalPrice: 323984,
+        image: "img/phones/a6.jpg",
+        rating: 4.3,
+        reviews: 198,
+        badge: "Essential",
+      },
+      {
+        id: 599,
+        title: "Iphone 14 promax 512GB",
+        vendor: "Gigs & Gadgets",
+        price: 1199845,
+        originalPrice: 9255984,
+        image: "img/phones/a7.jpg",
+        rating: 4.4,
+        reviews: 123,
+        badge: "Sale",
+      },
+      {
+        id: 699,
+        title: "Iphone 13 promax 512GB",
+        vendor: "GadgetGear",
+        price: 765984,
+        originalPrice: 6923984,
+        image: "img/phones/a8.jpg",
+        rating: 4.3,
+        reviews: 198,
+        badge: "Essential",
+      },
+    ],
   };
+  // ==================== CATEGORY PAGE DISPLAY ====================
+  function displayCategoryProducts(categoryId) {
+    const categoryContainer = document.querySelector(`.category-${categoryId}`);
+    if (!categoryContainer) return;
+
+    const products = productCategories[categoryId] || [];
+    displayFilteredProducts(products, `.category-${categoryId}`);
+  }
+
+  // ==================== INITIALIZE CATEGORY PAGES ====================
+  function initCategoryPages() {
+    // Check if we're on a category page
+    const categoryPage = document.querySelector("[data-category-page]");
+    if (!categoryPage) return;
+
+    const categoryId = categoryPage.dataset.categoryPage;
+    if (productCategories[categoryId]) {
+      displayCategoryProducts(categoryId);
+    }
+  }
 
   // Initialize all carousels
+  initCategoryPages();
   const carouselIntervals = new Map();
 
   function initTabCarousels(sectionSelector) {

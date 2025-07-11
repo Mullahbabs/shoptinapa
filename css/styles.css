@@ -2089,7 +2089,7 @@ body.dark-mode .flash-message {
   min-height: 300px;
   max-height: 400px;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/bcart.png");
+    url("/img/logo/uduabg.png");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -2111,7 +2111,7 @@ body.dark-mode .flash-message {
   width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/bcart.png");
+    url("/img/logo/uduabg.png");
   z-index: 1;
 }
 
