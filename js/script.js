@@ -1820,7 +1820,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     ],
     smartphonesapple: [
-      //smartphonesapple
+      //smartphonesapple//
       {
         id: 5,
         title: "Iphone 16 128GB",
@@ -1831,6 +1831,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.7,
         reviews: 156,
         badge: "New",
+        section: "smartphonesapple",
       },
       {
         id: 6,
@@ -1843,6 +1844,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.8,
         reviews: 189,
         badge: "Popular",
+        section: "smartphonesapple",
       },
       {
         id: 7,
@@ -1855,6 +1857,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.6,
         reviews: 134,
         badge: "Trending",
+        section: "smartphonesapple",
       },
       {
         id: 8,
@@ -1867,6 +1870,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.5,
         reviews: 167,
         badge: "Bestseller",
+        section: "smartphonesapple",
       },
       {
         id: 9,
@@ -1878,6 +1882,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.4,
         reviews: 123,
         badge: "Sale",
+        section: "smartphonesapple",
       },
       {
         id: 10,
@@ -1889,6 +1894,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.3,
         reviews: 198,
         badge: "Essential",
+        section: "smartphonesapple",
       },
       {
         id: 11,
@@ -1900,6 +1906,7 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.4,
         reviews: 123,
         badge: "Sale",
+        section: "smartphonesapple",
       },
       {
         id: 12,
@@ -1911,9 +1918,8 @@ document.addEventListener("DOMContentLoaded", function () {
         rating: 4.3,
         reviews: 198,
         badge: "Essential",
+        section: "smartphonesapple",
       },
-
-      //smartphonessamsung
       {
         id: 13,
         title: "Samsung Galaxy s23 Ultra",
@@ -2044,8 +2050,8 @@ document.addEventListener("DOMContentLoaded", function () {
     displayCategoryProducts(categoryId);
 
     // Display SUBSECTIONS (if they exist in HTML)
-    displayCategoryProducts(categoryId, "smartphonessamsung"); // Load fruits
-    displayCategoryProducts(categoryId, "dairy"); // Load dairy
+    displayCategoryProducts(categoryId, "smartphonessamsung");
+    displayCategoryProducts(categoryId, "dairy");
   }
   // Initialize all carousels
   initCategoryPages();
