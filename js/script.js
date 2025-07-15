@@ -1174,7 +1174,7 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.value = "";
     priceMinInput.value = "";
     priceMaxInput.value = "";
-    loadProductGrids(); // Reload all product grids instead of original HTML
+    loadProductGrids(); 
   }
 
   function initSearchAndFilter() {
@@ -1430,7 +1430,7 @@ document.addEventListener("DOMContentLoaded", function () {
       subtotal += item.price * item.quantity;
     });
 
-    const shipping = 1500; // Fixed shipping cost as per requirement
+    const shipping = 1500; // Fixed shipping cost 
     const total = subtotal + shipping;
 
     summaryItemsContainer.forEach((container) => {
@@ -2009,7 +2009,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ==================== INITIALIZATION ====================
   initSearchAndFilter();
-  loadProductGrids(); // Load all product grids on the page
+  loadProductGrids(); 
   initTabCarousels(".featured-products");
   initTabCarousels(".fashion-products");
   initTabCarousels(".electronics-products");
