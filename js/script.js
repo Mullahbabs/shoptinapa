@@ -21,6 +21,104 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ==================== PRODUCT DATA ====================
   const productCategories = {
+    featured: [
+      {
+        id: 2201,
+        title: "Beaded String Crafts",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made1.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Intricate beaded crafts.",
+      },
+      {
+        id: 2202,
+        title: "Handmade Storage Baskets",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made2.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Handwoven storage baskets.",
+      },
+      {
+        id: 2203,
+        title: "Handcarved Wooden Bowl",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made3.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Artisanal wooden bowl.",
+      },
+      {
+        id: 2204,
+        title: "Handcrafted Tapistry",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made4.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Decorative tapestry.",
+      },
+      {
+        id: 2205,
+        title: "Handmade Shopping Basket",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made5.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Durable shopping basket.",
+      },
+      {
+        id: 2206,
+        title: "Handcarved Wooden Kitchen Set",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made6.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Wooden kitchen utensils.",
+      },
+      {
+        id: 2207,
+        title: "Handcarved Wooden Kitchen Set",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made6.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Wooden kitchen utensils.",
+      },
+      {
+        id: 2208,
+        title: "Handcarved Wooden Kitchen Set",
+        vendor: "CR Artisans",
+        price: 55984,
+        originalPrice: 68784,
+        image: "img/made6.jpg",
+        rating: 4.9,
+        reviews: 56,
+        badge: "Local",
+        description: "Wooden kitchen utensils.",
+      },
+    ],
     trending: [
       {
         id: 101,
@@ -1174,7 +1272,7 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.value = "";
     priceMinInput.value = "";
     priceMaxInput.value = "";
-    loadProductGrids(); 
+    loadProductGrids();
   }
 
   function initSearchAndFilter() {
@@ -1430,7 +1528,7 @@ document.addEventListener("DOMContentLoaded", function () {
       subtotal += item.price * item.quantity;
     });
 
-    const shipping = 1500; // Fixed shipping cost 
+    const shipping = 1500; // Fixed shipping cost
     const total = subtotal + shipping;
 
     summaryItemsContainer.forEach((container) => {
@@ -2009,7 +2107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ==================== INITIALIZATION ====================
   initSearchAndFilter();
-  loadProductGrids(); 
+  loadProductGrids();
   initTabCarousels(".featured-products");
   initTabCarousels(".fashion-products");
   initTabCarousels(".electronics-products");
