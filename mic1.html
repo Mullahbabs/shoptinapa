@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paradiseport - Premium E-Commerce Platform</title>
+    <title>UDUA - Premium E-Commerce Platform</title>
     <meta
       name="description"
       content="Discover authentic made in Cross River products and more on paradiseport premium e-commerce platform"
@@ -333,17 +333,17 @@
 
     <section class="hero-banner-zenith">
         <div class="hero-banner-zenith__content">
-            <h1 class="hero-banner-zenith__title">Bringing The Future To Your Doorstep</h1>
-            <p class="hero-banner-zenith__subtitle">Explore our infinit variety of Laptop collections.</p>
+            <h1 class="hero-banner-zenith__title">Made In Cross River</h1>
+            <p class="hero-banner-zenith__subtitle">Authentic Handcrafted Wood Carvings</p>
             <div class="hero-banner-zenith__dropdown">
                 <button class="hero-banner-zenith__dropdown-btn">Browse Categories ▼</button>
                 <div class="hero-banner-zenith__dropdown-content" style="margin-bottom: 8px;">
-                    <a href="#" class="hero-banner-zenith__dropdown-item">Flagship Phones</a>
-                    <a href="#" class="hero-banner-zenith__dropdown-item">Budget Devices</a>
-                    <a href="#" class="hero-banner-zenith__dropdown-item">Gaming Phones</a>
-                    <a href="#" class="hero-banner-zenith__dropdown-item">Camera-Focused</a>
-                    <a href="#" class="hero-banner-zenith__dropdown-item">Business Edition</a>
-                    <a href="#" class="hero-banner-zenith__dropdown-item">Eco-Friendly Models</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Sculptures</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Chairs</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Local Carvings</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Wooded Trolleys</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Kitchen Crafts</a>
+                    <a href="#" class="hero-banner-zenith__dropdown-item">Eco-Friendly Art</a>
                 </div>
             </div>    
         </div>
@@ -373,6 +373,34 @@
     </div>
   </div>
   </div>  
+
+  <section class="products">
+      <div class="container">
+        <div class="section-header">
+          <h2>Art Carvings</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="mic1wood" data-section="artscarvings"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        <div class="section-header">
+          <h2>Wooden Furniture</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="" data-section=""></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
 
   
 
@@ -426,10 +454,10 @@
           <!-- About Column -->
           <div class="footer-column about-column">
             <div class="footer-logo">
-              <img src="img/logo/Paradiselogo.png" alt="Paradiseport" />
+              <img src="img/logo/Paradiselogo.png" alt="UDUA" />
             </div>
             <p class="footer-about">
-              Paradiseport brings you the finest products from Cross River and beyond.
+              UDUA brings you the finest products from Cross River and beyond.
               We're committed to quality, authenticity, and exceptional service.
             </p>
             <div class="social-links">
@@ -499,62 +527,7 @@
           </div>
         </div>
 
-        <!-- Quick View Modal -->
-        <div class="quick-view-modal">
-          <div class="modal-overlay"></div>
-          <div class="modal-container">
-            <button class="close-modal">&times;</button>
-            <div class="modal-content">
-              <div class="modal-product-gallery">
-                <div class="main-image">
-                  <img src="" alt="Product Image" />
-                </div>
-                <div class="thumbnail-container">
-                  <!-- Thumbnails will be added by JavaScript -->
-                </div>
-              </div>
-              <div class="modal-product-info">
-                <h2 class="product-title"></h2>
-                <div class="product-meta">
-                  <span class="vendor"></span>
-                  <div class="rating">
-                    <div class="rating-stars"></div>
-                    <span class="review-count"></span>
-                  </div>
-                </div>
-                <div class="product-price">
-                  <span class="current-price"></span>
-                  <span class="original-price"></span>
-                </div>
-                <div class="product-description">
-                  <p></p>
-                </div>
-                <div class="product-actions">
-                  <div class="quantity-selector">
-                    <button class="quantity-minus">-</button>
-                    <input type="number" value="1" min="1" />
-                    <button class="quantity-plus">+</button>
-                  </div>
-                  <button class="add-to-cart">Add to Cart</button>
-                  <button class="wishlist-btn">
-                    <i class="far fa-heart"></i>
-                  </button>
-                </div>
-                <div class="product-meta-footer">
-                  <div class="meta-item">
-                    <i class="fas fa-box-open"></i>
-                    <span>Free shipping on orders over $50</span>
-                  </div>
-                  <div class="meta-item">
-                    <i class="fas fa-undo"></i>
-                    <span>30-day easy returns</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-         <!-- Cart Modal -->
+        <!-- Cart Modal -->
     <div
       class="cart-modal"
       role="dialog"
@@ -837,6 +810,71 @@
         </div>
       </div>
     </div>
+
+    <!-- Quick View Modal -->
+    <div
+      class="quick-view-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product quick view"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <button class="close-modal" aria-label="Close quick view">×</button>
+        <div class="modal-content">
+          <div class="modal-product-gallery">
+            <div class="main-image">
+              <img src="" alt="Product Image" loading="lazy" />
+            </div>
+            <div class="thumbnail-container"></div>
+          </div>
+          <div class="modal-product-info">
+            <h2 class="product-title"></h2>
+            <div class="product-meta">
+              <span class="vendor"></span>
+              <div class="rating">
+                <div class="rating-stars"></div>
+                <span class="review-count"></span>
+              </div>
+            </div>
+            <div class="product-price">
+              <span class="current-price"></span>
+              <span class="original-price"></span>
+            </div>
+            <div class="product-description">
+              <p></p>
+            </div>
+            <div class="product-actions">
+              <div class="quantity-selector">
+                <button class="quantity-minus" aria-label="Decrease quantity">
+                  -
+                </button>
+                <input type="number" value="1" min="1" aria-label="Quantity" />
+                <button class="quantity-plus" aria-label="Increase quantity">
+                  +
+                </button>
+              </div>
+              <button class="add-to-cart" aria-label="Add to cart">
+                Add to Cart
+              </button>
+              <button class="wishlist-btn" aria-label="Add to wishlist">
+                <i class="far fa-heart" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="product-meta-footer">
+              <div class="meta-item">
+                <i class="fas fa-box-open" aria-hidden="true"></i>
+                <span>Free shipping on orders over $50</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-undo" aria-hidden="true"></i>
+                <span>30-day easy returns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
      <!-- Footer Ticker -->
     <div class="ticker-container">
       <div class="ticker-text">
@@ -869,7 +907,6 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/checkout.js"></script>
     <script src="js/modal.js"></script>
     <script src="js/ticker.js"></script>
   </body>
