@@ -1563,7 +1563,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "aria-label",
         `Cart contains ${cartCount.textContent} items`
       );
-    }
+    } 
   }
 
   function showFlashMessage(message) {
