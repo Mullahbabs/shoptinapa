@@ -952,6 +952,148 @@ body.dark-mode .mobile-menu-close {
   background: #e67e22;
 }
 
+/* Wishlist Modal Styles */
+.wishlist-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.wishlist-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wishlist-modal .modal-content {
+  background-color: var(--white);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.wishlist-modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.wishlist-modal .modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wishlist-modal .modal-header h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+.wishlist-modal .modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--light-text);
+}
+
+.wishlist-modal .modal-body {
+  padding: 20px;
+}
+
+.wishlist-modal .wishlist-items {
+  list-style: none;
+}
+
+.wishlist-modal .wishlist-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.wishlist-modal .wishlist-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.wishlist-modal .wishlist-item-details {
+  flex: 1;
+}
+
+.wishlist-modal .wishlist-item-details h4 {
+  font-size: 1rem;
+  color: var(--dark-text);
+  margin-bottom: 5px;
+}
+
+.wishlist-modal .wishlist-item-details p {
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+
+.wishlist-modal .remove-wishlist-item {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+.wishlist-modal .modal-footer {
+  padding: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wishlist-modal .btn {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wishlist-modal .btn:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Update badge styles for wishlist */
+.action-icon[title="Wishlist"] .badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--accent-color);
+  color: var(--white);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .wishlist-btn {
   background: none;
   border: none;

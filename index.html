@@ -362,7 +362,7 @@
     <div class="ticker-container">
       <div class="ticker-text">
         ✨ Fresh Made In Cross River Products Daily! | 🚚 Free Delivery in
-        Calabar on Orders Over ₦10,000 | ⏳ Flash Sale: 30% Off Local Crafts! |
+        Calabar on Orders Over ₦50,000 | ⏳ Flash Sale: 30% Off Local Crafts! |
         📱 Follow @Paradiseport
       </div>
     </div>
@@ -977,6 +977,29 @@
       aria-live="assertive"
     ></div>
 
+    <!-- Wishlist Modal -->
+    <div class="wishlist-modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Your Wishlist</h3>
+          <button class="modal-close" aria-label="Close wishlist">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="wishlist-items">
+            <!-- Wishlist items will be dynamically inserted here -->
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" onclick="closeWishlistModal()">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Checkout Modal -->
     <div
       class="checkout-modal"
@@ -1276,7 +1299,7 @@
             <div class="product-meta-footer">
               <div class="meta-item">
                 <i class="fas fa-box-open" aria-hidden="true"></i>
-                <span>Free shipping on orders over $50</span>
+                <span>Free shipping on orders over ₦250,000</span>
               </div>
               <div class="meta-item">
                 <i class="fas fa-undo" aria-hidden="true"></i>

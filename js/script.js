@@ -1563,7 +1563,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "aria-label",
         `Cart contains ${cartCount.textContent} items`
       );
-    } 
+    }
   }
 
   function showFlashMessage(message) {
@@ -1685,6 +1685,103 @@ document.addEventListener("DOMContentLoaded", function () {
       saveCart();
     });
   }
+
+  function updateWishlistCount() {
+    const wishlistBadge = document.querySelector(
+      ".action-icon.wishlist-btn .badge"
+    );
+    if (wishlistBadge) {
+      wishlistBadge.textContent = wishlist.length;
+      wishlistBadge.setAttribute(
+        "aria-label",
+        `Wishlist contains ${wishlist.length} items`
+      );
+    }
+  }
+
+  function renderWishlistModal() {
+    const wishlistItemsContainer = document.querySelector(".wishlist-items");
+    if (!wishlistItemsContainer) return;
+
+    wishlistItemsContainer.innerHTML = "";
+    if (wishlist.length === 0) {
+      wishlistItemsContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+      return;
+    }
+
+    wishlist.forEach((item) => {
+      const wishlistItem = document.createElement("li");
+      wishlistItem.className = "wishlist-item";
+      wishlistItem.innerHTML = `
+      <img src="${sanitizeInput(item.image)}" alt="${sanitizeInput(
+        item.title
+      )}" class="wishlist-item-image">
+      <div class="wishlist-item-details">
+        <h4>${sanitizeInput(item.title)}</h4>
+        <p>${sanitizeInput(item.vendor)}</p>
+        <p>${formatNaira(item.price)}</p>
+      </div>
+      <button class="remove-wishlist-item" data-id="${
+        item.id
+      }" aria-label="Remove ${sanitizeInput(item.title)} from wishlist">
+        <i class="fas fa-trash" aria-hidden="true"></i>
+      </button>
+    `;
+      wishlistItemsContainer.appendChild(wishlistItem);
+    });
+  }
+
+  function removeFromWishlist(productId) {
+    wishlist = wishlist.filter((item) => item.id !== productId);
+    saveWishlist();
+    updateWishlistCount();
+    renderWishlistModal();
+    showFlashMessage("Removed from Wishlist");
+  }
+
+  // Initialize wishlist elements
+  const wishlistBtn = document.querySelector(".wishlist-btn");
+  const wishlistModal = document.querySelector(".wishlist-modal");
+  const closeWishlistModalBtn = document.querySelector(
+    ".wishlist-modal .modal-close"
+  );
+  const wishlistModalOverlay = document.querySelector(
+    ".wishlist-modal .modal-overlay"
+  );
+
+  if (wishlistBtn) {
+    wishlistBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      wishlistModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      renderWishlistModal();
+    });
+  }
+
+  if (closeWishlistModalBtn) {
+    closeWishlistModalBtn.addEventListener("click", () => {
+      wishlistModal.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  }
+
+  if (wishlistModalOverlay) {
+    wishlistModalOverlay.addEventListener("click", () => {
+      wishlistModal.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  }
+
+  // Event delegation for wishlist item removal
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".remove-wishlist-item")) {
+      const itemId = e.target.closest(".remove-wishlist-item").dataset.id;
+      removeFromWishlist(itemId);
+    }
+  });
+
+  // Update wishlist count on page load
+  updateWishlistCount();
 
   // ==================== CHECKOUT FUNCTIONALITY ====================
   const checkoutModal = document.querySelector(".checkout-modal");
