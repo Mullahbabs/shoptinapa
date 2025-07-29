@@ -1709,7 +1709,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     wishlistItemsContainer.innerHTML = "";
     if (wishlist.length === 0) {
-      wishlistItemsContainer.innerHTML = "<p>Your wishlist is empty.</p>";
+      wishlistItemsContainer.innerHTML.style.color.white =
+        "<p>Your wishlist is empty.</p>";
       return;
     }
 
@@ -1736,7 +1737,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function removeFromWishlist(productId) {
-    const id = Number(productId); // Convert to number for type consistency
+    const id = Number(productId);
     wishlist = wishlist.filter((item) => item.id !== id);
     saveWishlist();
     updateWishlistCount();
@@ -1787,7 +1788,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update wishlist count on page load
   updateWishlistCount();
-  
+
   // ==================== CHECKOUT FUNCTIONALITY ====================
   const checkoutModal = document.querySelector(".checkout-modal");
   const closeCheckoutModalBtn = document.querySelector(".close-checkout-modal");
