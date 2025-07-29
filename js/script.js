@@ -1591,6 +1591,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!wishlist.find((item) => item.id === product.id)) {
       wishlist.push(product);
       saveWishlist();
+      updateWishlistCount(); // Update badge immediately
+      if (document.querySelector(".wishlist-modal.active")) {
+        renderWishlistModal(); // Update modal if open
+      }
       showFlashMessage("Added to Wishlist");
     } else {
       showFlashMessage("Already in Wishlist");
@@ -1732,7 +1736,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function removeFromWishlist(productId) {
-    wishlist = wishlist.filter((item) => item.id !== productId);
+    const id = Number(productId); // Convert to number for type consistency
+    wishlist = wishlist.filter((item) => item.id !== id);
     saveWishlist();
     updateWishlistCount();
     renderWishlistModal();
@@ -1782,7 +1787,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update wishlist count on page load
   updateWishlistCount();
-
+  
   // ==================== CHECKOUT FUNCTIONALITY ====================
   const checkoutModal = document.querySelector(".checkout-modal");
   const closeCheckoutModalBtn = document.querySelector(".close-checkout-modal");
