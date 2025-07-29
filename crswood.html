@@ -85,17 +85,22 @@
                 <option>Become A Vendor</option>
               </select>
             </div>
-            <div class="action-icons header-actions">
-              <a href="#" class="action-icon" title="Wishlist">
-                <i class="far fa-heart"></i>
+            <div class="action-icons">
+              <a
+                href="#"
+                class="action-icon wishlist-btn"
+                title="Wishlist"
+                aria-label="View wishlist"
+              >
+                <i class="far fa-heart" aria-hidden="true"></i>
                 <span class="badge">0</span>
               </a>
-            </div>  
-              <div class="header-actions">
-            <button class="cart-btn" aria-label="View cart">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-count">0</span>
-            </button>
+              <button class="cart-btn" aria-label="View cart">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                <span class="cart-count" aria-label="Cart contains 0 items"
+                  >0</span
+                >
+              </button>
               <a href="#" class="action-icon" title="Account">
                 <i class="far fa-user"></i>
               </a>
@@ -122,14 +127,14 @@
           </li>
 
           <li class="dropdown">
-            <a href="#" class="nav-link active"
+            <a href="#" class="nav-link"
               ><i class="fas fa-store"></i> Marketplace
               <i class="fas fa-chevron-down"></i
             ></a>
             <div class="dropdown-content">
               <div class="dropdown-column">
                 <h4>Electronics</h4>
-                <a href="smartphones.html" class="active">Smartphones</a>
+                <a href="smartphones.html">Smartphones</a>
                 <a href="laptops.html">Laptops</a>
                 <a href="homeappliances.html">Home Appliances</a>
                 <a href="accessories.html">Accessories</a>
@@ -152,7 +157,7 @@
           </li>
 
           <li class="dropdown">
-            <a href="#" class="nav-link"
+            <a href="#" class="nav-link active"
               ><i class="fas fa-flag"></i> Made in CR
               <i class="fas fa-chevron-down"></i
             ></a>
@@ -340,7 +345,7 @@
     <section class="hero-banner-zenith">
         <div class="hero-banner-zenith__content">
             <h1 class="hero-banner-zenith__title">Made In Cross River</h1>
-            <p class="hero-banner-zenith__subtitle">Authentic Handcrafted Wood Carvings</p>
+            <p class="hero-banner-zenith__subtitle">Wood Carvings</p>
             <div class="hero-banner-zenith__dropdown">
                 <button class="hero-banner-zenith__dropdown-btn">Browse Categories ▼</button>
                 <div class="hero-banner-zenith__dropdown-content" style="margin-bottom: 8px;">
@@ -383,12 +388,54 @@
   <section class="products">
       <div class="container">
         <div class="section-header">
+          <h2>Kitchen Utensils</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="mic1wood" data-section="woodcarvingsutensils"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+  </section>
+
+  <section class="products">
+      <div class="container">
+        <div class="section-header">
           <h2>Art Carvings</h2>
           <a href="#" class="view-all"
             >View All <i class="fas fa-arrow-right"></i
           ></a>
         </div>
         <div class="product-grid" data-product-grid="mic1wood" data-section="artscarvings"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        <div class="section-header">
+          <h2>Masks Carvings</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="mic1wood" data-section="woodcarvingsmasks"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <div class="container">
+        <div class="section-header">
+          <h2>Home Wall Decor</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="mic1wood" data-section="woodcarvingsdecor"></div>
           <!-- Product cards will be inserted here by JavaScript -->
         </div>
       </div>
@@ -503,7 +550,9 @@
       <div class="modal-overlay"></div>
       <div class="modal-content">
         <div class="modal-header">
-          <h3> <i class="fas fa-heart" style="color: #ffc107"></i> Your Wishlist</h3>
+          <h3>
+            <i class="fas fa-heart" style="color: #ffc107"></i> Your Wishlist
+          </h3>
           <button class="modal-close" aria-label="Close wishlist">
             <i class="fas fa-times" aria-hidden="true"></i>
           </button>
