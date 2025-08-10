@@ -2226,7 +2226,6 @@ body.dark-mode .flash-message {
   }
 }
 
-/* Add these styles to your existing banner CSS */
 .countdown-container {
   margin: 30px 0;
   perspective: 1000px;
@@ -2309,7 +2308,7 @@ body.dark-mode .flash-message {
 @media (max-width: 480px) {
   .countdown-clock {
     flex-wrap: wrap;
-    transform: rotateX(10deg);
+    transform: rotateX(13deg) rotate(-5deg);
   }
 
   .countdown-segment {
