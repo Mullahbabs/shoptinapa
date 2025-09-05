@@ -5459,4 +5459,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showFlashMessage("An error occurred. Please try again.");
     console.error("Global error:", e);
   });
+
+  new WOW().init();
 });
