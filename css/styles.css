@@ -165,9 +165,10 @@ body {
 
 .help-select {
   padding: 8px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
   border-radius: 20px;
-  background-color: transparent;
+  background-color: var(--secondary-color);
+  color: #fff;
   cursor: pointer;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -2130,7 +2131,7 @@ body.dark-mode .flash-message {
   height: 80vh;
   min-height: 500px;
   max-height: 800px;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-size: cover;
   background-position: center;
@@ -2224,12 +2225,17 @@ body.dark-mode .flash-message {
   margin-top: 30px;
 }
 
+.popular-categories a {
+  text-decoration: none;
+}
+
 .category-tag {
   background: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
   color: white;
   padding: 8px 15px;
   border-radius: 20px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.3);
