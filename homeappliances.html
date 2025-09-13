@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDUA - Premium E-Commerce Platform</title>
+    <meta
+      name="description"
+      content="Discover authentic made in Cross River products and more on UDUA premium e-commerce platform"
+    />
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="container">
+        <div class="top-header-content">
+          <div class="welcome-message" style="color: white">
+            <span class="fa fa-idea" style="color: aqua"></span> Think
+            Crossriver
+          </div>
+          <div class="top-header-links">
+            <a href="#"><i class="fas fa-user"></i> Sign In</a>
+            <a href="#" class="sign-up-btn"
+              ><i class="fas fa-user-plus"></i> Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Header -->
+    <header class="main-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <img src="img/logo/udud.png" alt="UDUA" />
+          </div>
+          <div class="dark-mode-toggle">
+            <input
+              type="checkbox"
+              id="darkModeToggle"
+              class="toggle-checkbox"
+            />
+            <label for="darkModeToggle" class="toggle-label">
+              <i class="fas fa-moon">Dark-Mode</i>
+              <i class="fas fa-sun">Light-Mode</i>
+              <span class="toggle-ball"></span>
+            </label>
+          </div>
+
+          <div class="search-bar">
+            <div class="search-container">
+              <select class="category-select">
+                <option>All Categories</option>
+                <option>Electronics</option>
+                <option>Fashion</option>
+                <option>Food & Groceries</option>
+                <option>Handicrafts</option>
+              </select>
+              <input type="text" placeholder="Search for products, brands..." />
+              <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <div class="header-help">
+              <select class="help-select">
+                <option>Help Center</option>
+                <option>Track Order</option>
+                <option>Delivery Support</option>
+                <option>Become A Vendor</option>
+              </select>
+            </div>
+            <div class="action-icons">
+              <a
+                href="#"
+                class="action-icon wishlist-btn"
+                title="Wishlist"
+                aria-label="View wishlist"
+              >
+                <i class="far fa-heart" aria-hidden="true"></i>
+                <span class="badge">0</span>
+              </a>
+              <button class="cart-btn" aria-label="View cart">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                <span class="cart-count" aria-label="Cart contains 0 items"
+                  >0</span
+                >
+              </button>
+              <a href="#" class="action-icon" title="Account">
+                <i class="far fa-user"></i>
+              </a>
+            </div>
+             <button
+              class="mobile-menu-toggle"
+              aria-label="Toggle mobile menu"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html" class="nav-link"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link active"
+              ><i class="fas fa-store"></i> Marketplace
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Electronics</h4>
+                <a href="smartphones.html">Smartphones</a>
+                <a href="laptops.html">Laptops</a>
+                <a href="homeappliances.html">Home Appliances</a>
+                <a href="accessories.html">Accessories</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Fashion</h4>
+                <a href="mensfashion.html">Men's Clothing</a>
+                <a href="womensfashion.html">Women's Clothing</a>
+                <a href="jewelry.html">Jewelry</a>
+                <a href="footwear.html">Footwear</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Home & Living</h4>
+                <a href="furniture.html">Furniture</a>
+                <a href="decor.html">Decor</a>
+                <a href="kitchenware.html">Kitchenware</a>
+                <a href="#">Gardening</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-flag"></i> Made in CR
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Local Crafts</h4>
+                <a href="crswood.html">Wood Carvings</a>
+                <a href="beadwork.html">Beadwork</a>
+                <a href="textile.html">Traditional Textiles</a>
+                <a href="pottery.html">Pottery</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Local Produce</h4>
+                <a href="tinapafish.html">Tinapa Fish</a>
+                <a href="palmoil.html">Palm Oil</a>
+                <a href="cocoa.html">Cocoa Products</a>
+                <a href="spices.html">Spices</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Art & Culture</h4>
+                <a href="paintings.html">Paintings</a>
+                <a href="sculptures.html">Sculptures</a>
+                <a href="cultural.html">Cultural Items</a>
+                <a href="music.html">Music Instruments</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-shopping-basket"></i> Supermarket
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Food & Beverages</h4>
+                <a href="fresh.html">Fresh Produce</a>
+                <a href="dairy.html">Dairy</a>
+                <a href="bakery.html">Bakery</a>
+                <a href="beverages.html">Beverages</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Household</h4>
+                <a href="cleaners.html">Cleaning Supplies</a>
+                <a href="laundary.html">Laundry</a>
+                <a href="storage.html">Storage</a>
+                <a href="#">Utensils</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Health & Beauty</h4>
+                <a href="personal.html">Personal Care</a>
+                <a href="cosmetics.html">Cosmetics</a>
+                <a href="vitamins.html">Vitamins</a>
+                <a href="medical.html">Medical Supplies</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link"
+              ><i class="fas fa-info-circle"></i> About Us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close mobile menu">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html" class="nav-link active"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-store"></i> Marketplace
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Electronics</h4>
+                <a href="smartphones.html" class="active">Smartphones</a>
+                <a href="laptops.html">Laptops</a>
+                <a href="homeappliances.html">Home Appliances</a>
+                <a href="accessories.html">Accessories</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Fashion</h4>
+                <a href="mensfashion.html">Men's Clothing</a>
+                <a href="womensfashion.html">Women's Clothing</a>
+                <a href="jewelry.html">Jewelry</a>
+                <a href="footwear.html">Footwear</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Home & Living</h4>
+                <a href="furniture.html">Furniture</a>
+                <a href="decor.html">Decor</a>
+                <a href="kitchenware.html">Kitchenware</a>
+                <a href="#">Gardening</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-flag"></i> Made in CR
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Local Crafts</h4>
+                <a href="crswood.html">Wood Carvings</a>
+                <a href="beadwork.html">Beadwork</a>
+                <a href="textile.html">Traditional Textiles</a>
+                <a href="pottery.html">Pottery</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Local Produce</h4>
+                <a href="tinapafish.html">Tinapa Fish</a>
+                <a href="palmoil.html">Palm Oil</a>
+                <a href="cocoa.html">Cocoa Products</a>
+                <a href="spices.html">Spices</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Art & Culture</h4>
+                <a href="paintings.html">Paintings</a>
+                <a href="sculptures.html">Sculptures</a>
+                <a href="cultural.html">Cultural Items</a>
+                <a href="music.html">Music Instruments</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-shopping-basket"></i> Supermarket
+              <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <div class="dropdown-column">
+                <h4>Food & Beverages</h4>
+                <a href="fresh.html">Fresh Produce</a>
+                <a href="dairy.html">Dairy</a>
+                <a href="bakery.html">Bakery</a>
+                <a href="beverages.html">Beverages</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Household</h4>
+                <a href="cleaners.html">Cleaning Supplies</a>
+                <a href="laundary.html">Laundry</a>
+                <a href="storage.html">Storage</a>
+                <a href="#">Utensils</a>
+              </div>
+              <div class="dropdown-column">
+                <h4>Health & Beauty</h4>
+                <a href="personal.html">Personal Care</a>
+                <a href="cosmetics.html">Cosmetics</a>
+                <a href="vitamins.html">Vitamins</a>
+                <a href="medical.html">Medical Supplies</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link"
+              ><i class="fas fa-info-circle"></i> About Us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-menu-overlay"></div>
+    </nav>
+    <div class="ticker-container">
+      <div class="ticker-text">
+        ✨ Fresh Made In Cross River Products Daily! |
+         🚚 Free Delivery in Calabar on Orders Over ₦10,000 |
+          ⏳ Flash Sale: 30% Off Local Crafts! |
+           📱 Follow @Paradiseport
+      </div>
+    </div>
+
+    <section class="hero-banner">
+      <div class="banner-content">
+        <h1 class="banner-title wow fadeInDown" data-wow-delay="0.6s">Marketplace</h1>
+        <p class="banner-subtitle wow fadeInUp" data-wow-delay="0.4s">Home Appliances</p>
+        <div class="category-search">
+          <div class="popular-categories">
+          <a href="#refrigerators"><span class="category-tag wow fadeInUp" 
+            data-wow-delay="0.3s" >Refrigerators</span></a>
+          <a href="#mixers"> <span class="category-tag wow fadeInDown" 
+            data-wow-delay="0.4s" >Mixers</span></a>
+          <a href="#vacuums"> <span class="category-tag wow fadeInUp" 
+            data-wow-delay="0.5s" >Vacuums</span></a>
+          <a href="#ovens"> <span class="category-tag wow fadeInDown" 
+            data-wow-delay="0.6s" >Ovens</span></a>
+          <a href="#blenders"> <span class="category-tag wow fadeInUp" 
+            data-wow-delay="0.7s" >Blenders</span></a>
+          <a href="#washers"><span class="category-tag wow fadeInDown" 
+            data-wow-delay="0.8s">Washers</span></a>
+          <a href="#coffee"><span class="category-tag wow fadeInDown" 
+            data-wow-delay="0.9s">Coffee Makers</span></a>  
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <div class="search-filter-container">
+      <div class="container">
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search products...">
+          <button class="search-button">Search</button>
+        </div>
+
+    <div class="price-filter-container">
+      <div class="price-filter-group">
+        <label for="price-min">Min Price (₦):</label>
+        <input type="number" class="price-filter-input price-min" id="price-min" placeholder="Minimum">
+    </div>
+    <div class="price-filter-group">
+      <label for="price-max">Max Price (₦):</label>
+      <input type="number" class="price-filter-input price-max" id="price-max" placeholder="Maximum">
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-button apply-filter">Apply Filter</button>
+      <button class="filter-button reset-filter">Reset All</button>
+    </div>
+  </div>
+  </div>  
+
+  <section class="products" id="refrigerators">
+      <div class="container">
+        <div class="section-header">
+          <h2>Refrigerators</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="refrigerators"> </div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="mixers">
+      <div class="container">
+        <div class="section-header">
+          <h2>Mixers</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="mixers"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="vacuums">
+      <div class="container">
+        <div class="section-header">
+          <h2>vacuums</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="vacuums"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="ovens">
+      <div class="container">
+        <div class="section-header">
+          <h2>Ovens</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="ovens"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="blenders">
+      <div class="container">
+        <div class="section-header">
+          <h2>Blenders</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="blenders"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="washers">
+      <div class="container">
+        <div class="section-header">
+          <h2>Washers</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="washers"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="coffee">
+      <div class="container">
+        <div class="section-header">
+          <h2>Coffee Makers</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="product-grid" data-product-grid="homeappliances" data-section="coffeemakers"></div>
+          <!-- Product cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+  
+
+
+  <section class="partners-section">
+  <h3 class="section3-title">Our Trusted Partners</h3>
+  <div class="partners-ticker">
+    <div class="partners-track">
+      <!-- First set of logos -->
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 1" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 2" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 3" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 4" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 5" loading="lazy">
+      </div>
+      
+      <!-- Duplicate set for seamless looping -->
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 1" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 2" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 3" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/desc.png" alt="Partner 4" loading="lazy">
+      </div>
+      <div class="partner-logo">
+        <img src="img/medac.jpg" alt="Partner 5" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Ticker -->
+    <div class="ticker-container">
+      <div class="ticker-text">
+        UDUA is an initiative of the Microfinance Enterprise Development Agency
+        (MEDA), Under The government of Cross River State.
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div
+      class="cart-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Shopping cart"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <i class="fas fa-shopping-cart" style="color: #ffc107"></i> Items In
+            Your Cart
+          </h3>
+          <button class="close-cart-modal" aria-label="Close cart">×</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-total">
+          <span>Total:</span>
+          <span class="cart-total-price">₦0</span>
+        </div>
+        <div class="cart-actions">
+          <button class="clear-cart" aria-label="Clear cart">Clear Cart</button>
+          <button class="checkout" aria-label="Proceed to checkout">
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flash Message -->
+    <div
+      id="flash-message"
+      class="flash-message"
+      role="alert"
+      aria-live="assertive"
+    ></div>
+
+    <!-- Wishlist Modal -->
+    <div class="wishlist-modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <i class="fas fa-heart" style="color: #ffc107"></i> Your Wishlist
+          </h3>
+          <button class="modal-close" aria-label="Close wishlist">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="wishlist-items">
+            <!-- Wishlist items will be dynamically inserted here -->
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" onclick="closeWishlistModal()">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div
+      class="checkout-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Checkout"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button class="close-checkout-modal" aria-label="Close checkout">
+          ×
+        </button>
+        <h2>
+          <i class="fa fa-sign-out" style="color: #e74c3c"></i> Checkout
+          <br />
+          <span style="font-size: small; color: #4caf50">
+            Carefully fill out the form below to process your order
+            <br />Seven days return policy on faulty items
+          </span>
+        </h2>
+        <div class="checkout-steps">
+          <div class="step active" data-step="1" aria-current="step">
+            <span>1</span>
+            <p>Shipping</p>
+          </div>
+          <div class="step" data-step="2">
+            <span>2</span>
+            <p>Payment</p>
+          </div>
+          <div class="step" data-step="3">
+            <span>3</span>
+            <p>Confirmation</p>
+          </div>
+        </div>
+        <div class="checkout-forms">
+          <!-- Shipping Form -->
+          <form class="checkout-form active" id="shipping-form">
+            <div class="form-group">
+              <label for="full-name">Full Name</label>
+              <input
+                type="text"
+                id="full-name"
+                required
+                aria-label="Full name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required aria-label="Email" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" required aria-label="Phone number" />
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea
+                id="address"
+                rows="3"
+                required
+                aria-label="Address"
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" required aria-label="City" />
+              </div>
+              <div class="form-group">
+                <label for="state">State</label>
+                <select id="state" required aria-label="State">
+                  <option value="">Select State</option>
+                  <option value="Lagos">Lagos</option>
+                  <option value="Abuja">Abuja</option>
+                  <option value="Rivers">Rivers</option>
+                  <option value="Cross River">Cross River</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn-next"
+                data-next="payment-form"
+                aria-label="Continue to payment"
+              >
+                Continue to Payment
+              </button>
+            </div>
+          </form>
+          <!-- Payment Form -->
+          <form class="checkout-form" id="payment-form">
+            <div class="payment-methods">
+              <div class="payment-method active" data-method="card">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  id="card-payment"
+                  checked
+                />
+                <label for="card-payment">
+                  <i class="fas fa-credit-card" aria-hidden="true"></i>
+                  <span>Credit/Debit Card</span>
+                </label>
+              </div>
+              <div class="payment-method" data-method="transfer">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  id="transfer-payment"
+                />
+                <label for="transfer-payment">
+                  <i class="fas fa-university" aria-hidden="true"></i>
+                  <span>Bank Transfer</span>
+                </label>
+              </div>
+              <div class="payment-method" data-method="paypal">
+                <input type="radio" name="payment-method" id="paypal-payment" />
+                <label for="paypal-payment">
+                  <i class="fab fa-paypal" aria-hidden="true"></i>
+                  <span>PayPal</span>
+                </label>
+              </div>
+            </div>
+            <div class="card-details active">
+              <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input
+                  type="text"
+                  id="card-number"
+                  placeholder="1234 5678 9012 3456"
+                  aria-label="Card number"
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="expiry-date">Expiry Date</label>
+                  <input
+                    type="text"
+                    id="expiry-date"
+                    placeholder="MM/YY"
+                    aria-label="Expiry date"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cvv">CVV</label>
+                  <input
+                    type="text"
+                    id="cvv"
+                    placeholder="123"
+                    aria-label="CVV"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="card-name">Name on Card</label>
+                <input type="text" id="card-name" aria-label="Name on card" />
+              </div>
+            </div>
+            <div class="order-summary">
+              <h4>Order Summary</h4>
+              <div class="summary-items"></div>
+              <div class="summary-total">
+                <div class="total-row">
+                  <span>Subtotal</span>
+                  <span class="subtotal">₦0</span>
+                </div>
+                <div class="total-row">
+                  <span>Shipping</span>
+                  <span class="shipping">₦1,500</span>
+                </div>
+                <div class="total-row grand-total">
+                  <span>Total</span>
+                  <span class="total">₦0</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn-prev"
+                data-prev="shipping-form"
+                aria-label="Back to shipping"
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                class="btn-next"
+                data-next="confirmation-form"
+                aria-label="Proceed to confirmation"
+              >
+                Complete Order
+              </button>
+            </div>
+          </form>
+          <!-- Confirmation Form -->
+          <form class="checkout-form" id="confirmation-form">
+            <div class="confirmation-message">
+              <div class="icon-success">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <h3>Order Confirmed!</h3>
+              <p>
+                Thank you for your purchase. Your order has been received and is
+                being processed.
+              </p>
+              <p class="order-number">Order #: <span>TNPA-2023-0001</span></p>
+              <p>We'll send you a confirmation email shortly.</p>
+            </div>
+            <div class="order-summary">
+              <h4>Order Details</h4>
+              <div class="summary-items"></div>
+              <div class="summary-total">
+                <div class="total-row">
+                  <span>Subtotal</span>
+                  <span class="subtotal">₦0</span>
+                </div>
+                <div class="total-row">
+                  <span>Shipping</span>
+                  <span class="shipping">₦1,500</span>
+                </div>
+                <div class="total-row grand-total">
+                  <span>Total</span>
+                  <span class="total">₦0</span>
+                </div>
+              </div>
+            </div>
+            <div class="shipping-details">
+              <h4>Shipping Information</h4>
+              <div class="details-content"></div>
+            </div>
+            <div class="form-actions single-action">
+              <button
+                type="button"
+                class="btn-complete"
+                aria-label="Continue shopping"
+              >
+                Continue Shopping
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div
+      class="quick-view-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product quick view"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <button class="close-modal" aria-label="Close quick view">×</button>
+        <div class="modal-content">
+          <div class="modal-product-gallery">
+            <div class="main-image">
+              <img src="" alt="Product Image" loading="lazy" />
+            </div>
+            <div class="thumbnail-container"></div>
+          </div>
+          <div class="modal-product-info">
+            <h2 class="product-title"></h2>
+            <div class="product-meta">
+              <span class="vendor"></span>
+              <div class="rating">
+                <div class="rating-stars"></div>
+                <span class="review-count"></span>
+              </div>
+            </div>
+            <div class="product-price">
+              <span class="current-price"></span>
+              <span class="original-price"></span>
+            </div>
+            <div class="product-description">
+              <p></p>
+            </div>
+            <div class="product-actions">
+              <div class="quantity-selector">
+                <button class="quantity-minus" aria-label="Decrease quantity">
+                  -
+                </button>
+                <input type="number" value="1" min="1" aria-label="Quantity" />
+                <button class="quantity-plus" aria-label="Increase quantity">
+                  +
+                </button>
+              </div>
+              <button class="add-to-cart" aria-label="Add to cart">
+                Add to Cart
+              </button>
+              <button class="wishlist-btn" aria-label="Add to wishlist">
+                <i class="far fa-heart" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="product-meta-footer">
+              <div class="meta-item">
+                <i class="fas fa-box-open" aria-hidden="true"></i>
+                <span>Free shipping on orders over ₦250,000</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-undo" aria-hidden="true"></i>
+                <span>30-day easy returns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- Vibrant Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- About Column -->
+          <div class="footer-column about-column">
+            <div class="footer-logo">
+              <img src="img/logo/udud.png" alt="UDUA" />
+            </div>
+            <p class="footer-about">
+              UDUA brings you the finest products from Cross River and beyond.
+              We're committed to quality, authenticity, and exceptional service.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Quick Links Column -->
+          <div class="footer-column">
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">FAQs</a></li>
+            </ul>
+          </div>
+
+          <!-- Categories Column -->
+          <div class="footer-column">
+            <h3 class="footer-heading">Categories</h3>
+            <ul class="footer-links">
+              <li><a href="#">Electronics</a></li>
+              <li><a href="#">Fashion</a></li>
+              <li><a href="#">Home & Living</a></li>
+              <li><a href="#">Supermarket</a></li>
+              <li><a href="#">Local Crafts</a></li>
+              <li><a href="#">Special Offers</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Column -->
+          <div class="footer-column contact-column">
+            <h3 class="footer-heading">Contact Us</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Okoi Arikpo House,
+                Calabar, Nigeria
+              </li>
+              <li><i class="fas fa-phone"></i> +234 800 123 4567</li>
+              <li><i class="fas fa-envelope"></i> hello@Paradiseport.com</li>
+            </ul>
+
+            <div class="newsletter">
+              <h4>Newsletter</h4>
+              <p>Subscribe for updates and promotions</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required />
+                <button type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div class="fpayment-method">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+            <i class="fab fa-cc-apple-pay"></i>
+          </div>
+          <div class="copyright">
+            &copy; 2025 UDUA. All Rights Reserved.
+          </div>
+          <div class="copyright">
+            An Initiative Of <a href="https://www.medacrs.gov.ng" style="color: #ffc107;">MEDA CRS.</a>
+          </div>
+          <div class="copyright">
+            Powered by <a href="" style="color: #ffc107;">BellaTECH NG.</a>
+          </div>
+          <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Shipping Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/ticker.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+  </body>
+</html>
