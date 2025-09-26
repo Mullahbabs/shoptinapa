@@ -853,6 +853,8 @@ body.dark-mode .mobile-menu-close {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
   position: relative;
+  border-left: 2px solid #ae4555;
+  border-bottom: 2px solid #ae4555;
 }
 
 .product-card:hover {
