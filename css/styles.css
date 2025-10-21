@@ -2299,7 +2299,7 @@ body.dark-mode .flash-message {
 /* Banner Advert */
 .banner-advert {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/bcart.png") center/cover;
+    url("/img/carnivalbanner.jpg") center/cover;
   padding: 80px 0;
   margin: 30px 0;
   color: white;
