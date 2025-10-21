@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Set the date we're counting down to (adjust this to your offer end date)
-  const countDownDate = new Date();
-  countDownDate.setDate(countDownDate.getDate() + 7); // 7 days from now
+  // Set the date we're counting down to
+  const countDownDate = new Date("December 28, 2025 00:00:00");
+  countDownDate.setDate(countDownDate.getDate());
 
   // Update the countdown every 1 second
   const countdownFunction = setInterval(function () {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (distance < 0) {
       clearInterval(countdownFunction);
       document.querySelector(".countdown-clock").innerHTML =
-        '<div class="expired-message">OFFER EXPIRED!</div>';
+        '<div class="expired-message" style="color: rgb(58, 245, 167)">WELCOME TO PARADISE!, THE PARTY HAS BEGUN!</div>';
     }
   }, 1000);
 });
