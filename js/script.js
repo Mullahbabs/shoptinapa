@@ -19,6 +19,163 @@ document.addEventListener("DOMContentLoaded", function () {
     return div.innerHTML;
   }
 
+  // Product Data Manager
+  const ProductManager = {
+    // Get all product categories
+    getAllCategories() {
+      return productCategories;
+    },
+
+    // Get products by category
+    getProductsByCategory(category) {
+      return productCategories[category] || [];
+    },
+
+    // Get product by ID
+    getProductById(id) {
+      // Check in detailed products first
+      if (detailedProducts[id]) {
+        return detailedProducts[id];
+      }
+
+      // Search through all categories
+      for (const category in productCategories) {
+        const product = productCategories[category].find((p) => p.id === id);
+        if (product) return product;
+      }
+
+      return null;
+    },
+
+    // Get detailed product info
+    getDetailedProduct(id) {
+      return detailedProducts[id] || null;
+    },
+
+    // Search products
+    searchProducts(query) {
+      const results = [];
+      const searchTerm = query.toLowerCase();
+
+      for (const category in productCategories) {
+        const categoryResults = productCategories[category].filter(
+          (product) =>
+            product.title.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm) ||
+            product.vendor.toLowerCase().includes(searchTerm)
+        );
+        results.push(...categoryResults);
+      }
+
+      return results;
+    },
+
+    // Get products by vendor
+    getProductsByVendor(vendor) {
+      const results = [];
+      const vendorName = vendor.toLowerCase();
+
+      for (const category in productCategories) {
+        const vendorProducts = productCategories[category].filter((product) =>
+          product.vendor.toLowerCase().includes(vendorName)
+        );
+        results.push(...vendorProducts);
+      }
+
+      return results;
+    },
+
+    // Get featured products with discount
+    getDiscountedProducts() {
+      const discounted = [];
+
+      for (const category in productCategories) {
+        const categoryDiscounted = productCategories[category].filter(
+          (product) =>
+            product.originalPrice && product.originalPrice > product.price
+        );
+        discounted.push(...categoryDiscounted);
+      }
+
+      return discounted;
+    },
+
+    // Get products by rating (minimum rating)
+    getProductsByRating(minRating) {
+      const results = [];
+
+      for (const category in productCategories) {
+        const ratedProducts = productCategories[category].filter(
+          (product) => product.rating >= minRating
+        );
+        results.push(...ratedProducts);
+      }
+
+      return results;
+    },
+
+    // Get all unique vendors
+    getAllVendors() {
+      const vendors = new Set();
+
+      for (const category in productCategories) {
+        productCategories[category].forEach((product) => {
+          vendors.add(product.vendor);
+        });
+      }
+
+      return Array.from(vendors);
+    },
+
+    // Get products in price range
+    getProductsInPriceRange(minPrice, maxPrice) {
+      const results = [];
+
+      for (const category in productCategories) {
+        const priceRangeProducts = productCategories[category].filter(
+          (product) => product.price >= minPrice && product.price <= maxPrice
+        );
+        results.push(...priceRangeProducts);
+      }
+
+      return results;
+    },
+
+    // Calculate discount percentage
+    calculateDiscount(product) {
+      if (!product.originalPrice || product.originalPrice <= product.price) {
+        return 0;
+      }
+      return Math.round(
+        ((product.originalPrice - product.price) / product.originalPrice) * 100
+      );
+    },
+
+    // Export data as JSON string
+    exportToJSON() {
+      return JSON.stringify(
+        {
+          productCategories,
+          detailedProducts,
+        },
+        null,
+        2
+      );
+    },
+
+    // Import data from JSON string
+    importFromJSON(jsonString) {
+      try {
+        const data = JSON.parse(jsonString);
+        if (data.productCategories) productCategories = data.productCategories;
+        if (data.detailedProducts) detailedProducts = data.detailedProducts;
+        return true;
+      } catch (error) {
+        console.error("Error importing JSON data:", error);
+        return false;
+      }
+    },
+  };
   // ==================== PRODUCT DATA ====================
   const productCategories = {
     featured: [
@@ -6952,6 +7109,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const quickViewAddToCart = quickViewModal.querySelector(".add-to-cart");
     quickViewAddToCart.dataset.id = product.id;
+
+    const quickViewWishlistBtn = quickViewModal.querySelector(".wishlist-btn");
+    quickViewWishlistBtn.dataset.id = product.id;
+
+    const quickViewQuantityMinus =
+      quickViewModal.querySelector(".quantity-minus");
+    quickViewQuantityMinus.dataset.id = increaseQuantityMinus;
+
+    const quickViewQuantityPlus =
+      quickViewModal.querySelector(".quantity-plus");
+    quickViewQuantityPlus.dataset;
   }
 
   function closeQuickViewModal() {
