@@ -6810,34 +6810,42 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("darkMode", this.checked ? "enabled" : "disabled");
   });
 
-  // ==================== MOBILE MENU ====================
+
+   // ==================== MOBILE MENU ====================
   const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
   const mobileMenu = document.querySelector(".mobile-menu");
   const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
   const mobileMenuClose = document.querySelector(".mobile-menu-close");
 
   if (mobileMenuToggle && mobileMenu && mobileMenuOverlay && mobileMenuClose) {
+    // Fix: Select dropdowns, not mobile-menu elements
     const mobileDropdowns = mobileMenu.querySelectorAll(".dropdown");
+
     mobileDropdowns.forEach((dropdown) => {
       const link = dropdown.querySelector(".nav-link");
       link.setAttribute("tabindex", "0");
       link.setAttribute("aria-expanded", "false");
       link.addEventListener("click", function (e) {
         e.preventDefault();
+        e.stopPropagation(); // Prevent event from bubbling up
+
         const isActive = dropdown.classList.contains("active");
+
+        // Close all other dropdowns
         mobileDropdowns.forEach((d) => {
-          d.classList.remove("active");
-          d.querySelector(".nav-link").setAttribute("aria-expanded", "false");
+          if (d !== dropdown) {
+            d.classList.remove("active");
+            d.querySelector(".nav-link").setAttribute("aria-expanded", "false");
+          }
         });
+
+        // Toggle current dropdown
         if (!isActive) {
           dropdown.classList.add("active");
           link.setAttribute("aria-expanded", "true");
-        }
-      });
-      link.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          link.click();
+        } else {
+          dropdown.classList.remove("active");
+          link.setAttribute("aria-expanded", "false");
         }
       });
     });

@@ -769,6 +769,7 @@ body.dark-mode .navbar {
   color: var(--text-primary);
   cursor: pointer;
   padding: 10px;
+  z-index: 1002;
 }
 
 /* Mobile Menu */
@@ -798,7 +799,7 @@ body.dark-mode .navbar {
   gap: 10px;
 }
 
-.mobile-menu .nav-link .active {
+.mobile-menu .nav-link.active {
   display: flex;
   align-items: center;
   justify-content: space-between;
