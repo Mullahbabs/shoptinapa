@@ -46,17 +46,27 @@
         align-items: center;
       }
 
-      .logo {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--secondary);
+      .logo-container {
+        position: relative;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
       }
 
-      .logo i {
-        margin-right: 10px;
-        font-size: 2.2rem;
+      .logo {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
       .logo img {
@@ -68,6 +78,73 @@
 
       .logo img:hover {
         transform: scale(1.05);
+      }
+
+      .circular-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: rotate 15s linear infinite;
+      }
+
+      .circular-text p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .circular-text p span {
+        position: absolute;
+        left: 50%;
+        transform-origin: 0 100px;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .info {
+        margin-top: 30px;
+        text-align: center;
+        max-width: 500px;
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      .info h1 {
+        color: var(--primary);
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 768px) {
+        .logo-container {
+          width: 180px;
+          height: 180px;
+        }
+
+        .logo {
+          width: 100px;
+          height: 100px;
+        }
+
+        .circular-text p {
+          font-size: 12px;
+        }
       }
 
       nav ul {
@@ -335,18 +412,16 @@
   <body>
     <div class="container">
       <header>
-        <div class="logo">
-          <img src="img/232.jpg" alt="UDUA" loading="lazy" />
+        <div class="logo-container">
+          <div class="circular-text">
+            <p>
+              <!-- The text will be positioned via JavaScript -->
+            </p>
+          </div>
+          <div class="logo">
+            <img src="img/232.jpg" alt="UDUA Logo" />
+          </div>
         </div>
-        <nav>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
       </header>
 
       <section class="hero">
@@ -441,6 +516,37 @@
             element.style.transform = `translateY(${rate}px)`;
           });
         });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const text = "Think Cross River • ";
+        const circularText = document.querySelector(".circular-text p");
+        const radius = 100; // Radius of the circular path
+        const totalChars = text.length;
+
+        // Clear any existing content
+        circularText.innerHTML = "";
+
+        // Create each character as a separate span and position it in a circle
+        for (let i = 0; i < totalChars; i++) {
+          const span = document.createElement("span");
+          span.textContent = text[i];
+
+          // Calculate the angle for this character (half circle)
+          const angle = (i / (totalChars - 1)) * 180;
+          const radian = (angle * Math.PI) / 180;
+
+          // Position the character
+          const x = Math.cos(radian) * radius;
+          const y = Math.sin(radian) * radius;
+
+          span.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+          span.style.transformOrigin = `0 ${radius}px`;
+
+          circularText.appendChild(span);
+        }
       });
     </script>
   </body>

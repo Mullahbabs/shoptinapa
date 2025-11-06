@@ -96,15 +96,105 @@ body {
   gap: 20px;
 }
 
+.logo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+.logo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
 .logo img {
-  height: 45px;
+  height: 50px;
   border-radius: 40px;
-  width: 70px;
+  width: 75px;
   transition: var(--transition);
 }
 
 .logo img:hover {
   transform: scale(1.05);
+}
+
+.circular-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: rotate 15s linear infinite;
+}
+
+.circular-text p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c63ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.circular-text p span {
+  position: absolute;
+  left: 50%;
+  transform-origin: 0 100px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.info {
+  margin-top: 30px;
+  text-align: center;
+  max-width: 500px;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.info h1 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .circular-text p {
+    font-size: 12px;
+  }
 }
 
 .search-bar {

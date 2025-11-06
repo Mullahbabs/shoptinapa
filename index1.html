@@ -67,8 +67,13 @@
     <header class="main-header">
       <div class="container">
         <div class="header-content">
+          <div class="circular-text">
+            <p>
+              <!-- The text will be positioned via JavaScript -->
+            </p>
+          </div>
           <div class="logo">
-            <img src="img/232.jpg" alt="UDUA" loading="lazy" />
+            <img src="img/232.jpg" alt="UDUA Logo" />
           </div>
           <div class="dark-mode-toggle">
             <input
@@ -1563,5 +1568,36 @@
     <script src="js/herocarousel.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="js/countdown.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const text = "Think Cross River • ";
+        const circularText = document.querySelector(".circular-text p");
+        const radius = 100; // Radius of the circular path
+        const totalChars = text.length;
+
+        // Clear any existing content
+        circularText.innerHTML = "";
+
+        // Create each character as a separate span and position it in a circle
+        for (let i = 0; i < totalChars; i++) {
+          const span = document.createElement("span");
+          span.textContent = text[i];
+
+          // Calculate the angle for this character (half circle)
+          const angle = (i / (totalChars - 1)) * 180;
+          const radian = (angle * Math.PI) / 180;
+
+          // Position the character
+          const x = Math.cos(radian) * radius;
+          const y = Math.sin(radian) * radius;
+
+          span.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+          span.style.transformOrigin = `0 ${radius}px`;
+
+          circularText.appendChild(span);
+        }
+      });
+    </script>
   </body>
 </html>
