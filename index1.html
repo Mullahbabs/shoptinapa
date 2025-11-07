@@ -1097,7 +1097,6 @@
       </div>
     </div>
 
-    <!-- Checkout Modal -->
     <div
       class="checkout-modal"
       role="dialog"
@@ -1135,7 +1134,7 @@
           <!-- Shipping Form -->
           <form class="checkout-form active" id="shipping-form">
             <div class="form-group">
-              <label for="full-name">Full Name</label>
+              <label for="full-name">Full Name *</label>
               <input
                 type="text"
                 id="full-name"
@@ -1144,29 +1143,30 @@
               />
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email">Email *</label>
               <input type="email" id="email" required aria-label="Email" />
             </div>
             <div class="form-group">
-              <label for="phone">Phone Number</label>
+              <label for="phone">Phone Number *</label>
               <input type="tel" id="phone" required aria-label="Phone number" />
             </div>
             <div class="form-group">
-              <label for="address">Address</label>
+              <label for="address">Delivery Address *</label>
               <textarea
                 id="address"
                 rows="3"
                 required
                 aria-label="Address"
+                placeholder="Full delivery address including landmarks"
               ></textarea>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="city">City</label>
+                <label for="city">City *</label>
                 <input type="text" id="city" required aria-label="City" />
               </div>
               <div class="form-group">
-                <label for="state">State</label>
+                <label for="state">State *</label>
                 <select id="state" required aria-label="State">
                   <option value="">Select State</option>
                   <option value="Lagos">Lagos</option>
@@ -1187,75 +1187,74 @@
               </button>
             </div>
           </form>
+
           <!-- Payment Form -->
           <form class="checkout-form" id="payment-form">
             <div class="payment-methods">
-              <div class="payment-method active" data-method="card">
-                <input
-                  type="radio"
-                  name="payment-method"
-                  id="card-payment"
-                  checked
-                />
-                <label for="card-payment">
-                  <i class="fas fa-credit-card" aria-hidden="true"></i>
-                  <span>Credit/Debit Card</span>
-                </label>
-              </div>
-              <div class="payment-method" data-method="transfer">
+              <div class="payment-method active" data-method="transfer">
                 <input
                   type="radio"
                   name="payment-method"
                   id="transfer-payment"
+                  checked
                 />
                 <label for="transfer-payment">
                   <i class="fas fa-university" aria-hidden="true"></i>
                   <span>Bank Transfer</span>
                 </label>
               </div>
-              <div class="payment-method" data-method="paypal">
-                <input type="radio" name="payment-method" id="paypal-payment" />
-                <label for="paypal-payment">
-                  <i class="fab fa-paypal" aria-hidden="true"></i>
-                  <span>PayPal</span>
+            </div>
+
+            <!-- Bank Transfer Details -->
+            <div class="bank-transfer-details active">
+              <div class="bank-accounts">
+                <h4>Bank Account Details</h4>
+                <p class="payment-instruction">
+                  Please transfer the total amount to any of the accounts below
+                  and upload your payment receipt.
+                </p>
+                <div class="bank-account">
+                  <h5>Account 1</h5>
+                  <p><strong>Bank Name:</strong> Zenith Bank</p>
+                  <p><strong>Account Name:</strong> Paradiseport Enterprises</p>
+                  <p><strong>Account Number:</strong> 1234567890</p>
+                </div>
+                <div class="bank-account">
+                  <h5>Account 2</h5>
+                  <p><strong>Bank Name:</strong> GTBank</p>
+                  <p><strong>Account Name:</strong> Paradiseport Ventures</p>
+                  <p><strong>Account Number:</strong> 0987654321</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="receipt-upload">Upload Payment Receipt *</label>
+                <input
+                  type="file"
+                  id="receipt-upload"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                  required
+                  aria-label="Upload payment receipt"
+                />
+                <small>Accepted formats: JPG, PNG, PDF (Max: 5MB)</small>
+              </div>
+
+              <div class="form-group terms-checkbox">
+                <input
+                  type="checkbox"
+                  id="terms-checkbox"
+                  required
+                  aria-label="Agree to terms and conditions"
+                />
+                <label for="terms-checkbox">
+                  I agree to the
+                  <a href="#" target="_blank">Terms and Conditions</a> and
+                  confirm that I have made the bank transfer to the specified
+                  account
                 </label>
               </div>
             </div>
-            <div class="card-details active">
-              <div class="form-group">
-                <label for="card-number">Card Number</label>
-                <input
-                  type="text"
-                  id="card-number"
-                  placeholder="1234 5678 9012 3456"
-                  aria-label="Card number"
-                />
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="expiry-date">Expiry Date</label>
-                  <input
-                    type="text"
-                    id="expiry-date"
-                    placeholder="MM/YY"
-                    aria-label="Expiry date"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="cvv">CVV</label>
-                  <input
-                    type="text"
-                    id="cvv"
-                    placeholder="123"
-                    aria-label="CVV"
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="card-name">Name on Card</label>
-                <input type="text" id="card-name" aria-label="Name on card" />
-              </div>
-            </div>
+
             <div class="order-summary">
               <h4>Order Summary</h4>
               <div class="summary-items"></div>
@@ -1267,6 +1266,10 @@
                 <div class="total-row">
                   <span>Shipping</span>
                   <span class="shipping">₦1,500</span>
+                </div>
+                <div class="total-row">
+                  <span>Service Fee</span>
+                  <span class="service-fee">₦500</span>
                 </div>
                 <div class="total-row grand-total">
                   <span>Total</span>
@@ -1293,6 +1296,7 @@
               </button>
             </div>
           </form>
+
           <!-- Confirmation Form -->
           <form class="checkout-form" id="confirmation-form">
             <div class="confirmation-message">
@@ -1318,6 +1322,10 @@
                 <div class="total-row">
                   <span>Shipping</span>
                   <span class="shipping">₦1,500</span>
+                </div>
+                <div class="total-row">
+                  <span>Service Fee</span>
+                  <span class="service-fee">₦500</span>
                 </div>
                 <div class="total-row grand-total">
                   <span>Total</span>

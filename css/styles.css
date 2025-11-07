@@ -3182,6 +3182,88 @@ body.dark-mode .flash-message {
   display: block;
 }
 
+/* Add these styles to your existing CSS */
+
+.bank-transfer-details {
+  display: block;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.bank-transfer-details.active {
+  display: block;
+}
+
+.bank-accounts {
+  margin-bottom: 20px;
+}
+
+.bank-account {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.bank-account h5 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #293a6c;
+  font-size: 16px;
+}
+
+.bank-account p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  width: auto;
+  margin-top: 5px;
+}
+
+.terms-checkbox label {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.terms-checkbox a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.terms-checkbox a:hover {
+  text-decoration: underline;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 12px;
+}
+
+/* Update existing styles for new fee structure */
+.summary-total .total-row:not(.grand-total) {
+  color: #fff;
+}
+
+.summary-total .total-row.grand-total {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
 .order-summary {
   background-color: #293a6c;
   padding: 20px;
@@ -3368,6 +3450,25 @@ body.dark-mode .flash-message {
   .btn-next,
   .btn-complete {
     width: 100%;
+  }
+}
+
+/* Loading state for buttons */
+.btn-complete:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.fa-spin {
+  animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
